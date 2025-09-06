@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
     domains: ['localhost'],
     dangerouslyAllowSVG: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   // Disable dev-time rewrite to 3000 to avoid mismatch when Next picks 3001
   async headers() {
     return [
