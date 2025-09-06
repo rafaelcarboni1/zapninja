@@ -1,0 +1,26 @@
+{
+  "name": "@zapninja/whatsapp-core",
+  "version": "1.0.0",
+  "description": "WhatsApp core functionality and session management for ZAPNINJA",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "lint": "eslint src --ext .ts --fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@zapninja/shared": "workspace:*",
+    "@zapninja/database": "workspace:*",
+    "@wppconnect-team/wppconnect": "^1.35.1",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.8",
+    "@types/qrcode": "^1.5.5",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "eslint": "^8.56.0"
+  }
+}

@@ -1,0 +1,184 @@
+2025-09-01T21:24:49: (node:1072) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+    at name (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:73:19)
+    at lexer (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:91:27)
+    at lexer.next (<anonymous>)
+    at Iter.peek (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:106:38)
+    at Iter.tryConsume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:112:28)
+    at Iter.text (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:128:30)
+    at consume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:152:29)
+    at parse (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:183:20)
+    at /Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:294:74
+    at Array.map (<anonymous>)
+2025-09-01T21:24:57: (node:1104) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+    at name (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:73:19)
+    at lexer (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:91:27)
+    at lexer.next (<anonymous>)
+    at Iter.peek (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:106:38)
+    at Iter.tryConsume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:112:28)
+    at Iter.text (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:128:30)
+    at consume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:152:29)
+    at parse (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:183:20)
+    at /Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:294:74
+    at Array.map (<anonymous>)
+2025-09-01T21:25:05: (node:1600) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+    at name (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:73:19)
+    at lexer (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:91:27)
+    at lexer.next (<anonymous>)
+    at Iter.peek (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:106:38)
+    at Iter.tryConsume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:112:28)
+    at Iter.text (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:128:30)
+    at consume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:152:29)
+    at parse (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:183:20)
+    at /Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:294:74
+    at Array.map (<anonymous>)
+2025-09-01T21:25:14: (node:1793) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+    at name (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:73:19)
+    at lexer (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:91:27)
+    at lexer.next (<anonymous>)
+    at Iter.peek (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:106:38)
+    at Iter.tryConsume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:112:28)
+    at Iter.text (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:128:30)
+    at consume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:152:29)
+    at parse (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:183:20)
+    at /Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:294:74
+    at Array.map (<anonymous>)
+2025-09-01T21:25:21: (node:1820) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+    at name (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:73:19)
+    at lexer (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:91:27)
+    at lexer.next (<anonymous>)
+    at Iter.peek (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:106:38)
+    at Iter.tryConsume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:112:28)
+    at Iter.text (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:128:30)
+    at consume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:152:29)
+    at parse (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:183:20)
+    at /Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:294:74
+    at Array.map (<anonymous>)
+2025-09-01T21:25:30: (node:1843) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+    at name (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:73:19)
+    at lexer (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:91:27)
+    at lexer.next (<anonymous>)
+    at Iter.peek (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:106:38)
+    at Iter.tryConsume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:112:28)
+    at Iter.text (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:128:30)
+    at consume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:152:29)
+    at parse (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:183:20)
+    at /Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:294:74
+    at Array.map (<anonymous>)
+2025-09-01T21:25:38: (node:1883) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+    at name (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:73:19)
+    at lexer (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:91:27)
+    at lexer.next (<anonymous>)
+    at Iter.peek (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:106:38)
+    at Iter.tryConsume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:112:28)
+    at Iter.text (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:128:30)
+    at consume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:152:29)
+    at parse (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:183:20)
+    at /Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:294:74
+    at Array.map (<anonymous>)
+2025-09-01T21:25:46: (node:1906) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+    at name (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:73:19)
+    at lexer (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:91:27)
+    at lexer.next (<anonymous>)
+    at Iter.peek (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:106:38)
+    at Iter.tryConsume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:112:28)
+    at Iter.text (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:128:30)
+    at consume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:152:29)
+    at parse (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:183:20)
+    at /Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:294:74
+    at Array.map (<anonymous>)
+2025-09-01T21:55:07: (node:12409) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T21:55:07: (node:12408) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T21:55:15: (node:12476) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T21:55:15: (node:12477) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T21:55:23: (node:12539) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T21:55:23: (node:12538) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T21:55:31: (node:12639) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T21:55:31: (node:12638) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:16:57: (node:19031) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:17:05: (node:19089) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:17:13: (node:19121) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:17:21: (node:19153) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:17:29: (node:19202) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:17:37: (node:19256) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:17:45: (node:19289) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:17:53: (node:19332) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:22:15: (node:21289) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:22:23: (node:21326) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:22:31: (node:21343) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:22:39: (node:21377) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:22:47: (node:21410) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:22:55: (node:21433) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:23:03: (node:21469) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:23:11: (node:21487) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:38:53: (node:26325) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:38:53: (node:26341) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:39:01: (node:26378) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:39:01: (node:26395) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:39:09: (node:26479) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:39:09: (node:26480) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:39:17: (node:26534) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:39:17: (node:26535) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"message":"(node:32469) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n","timestamp":"2025-09-01T22:49:39","type":"err","process_id":11,"app_name":"whatsapp-orchestrator"}
+{"message":"(node:32500) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n","timestamp":"2025-09-01T22:49:47","type":"err","process_id":12,"app_name":"whatsapp-orchestrator"}
+{"message":"(node:32524) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n","timestamp":"2025-09-01T22:49:55","type":"err","process_id":13,"app_name":"whatsapp-orchestrator"}
+{"message":"(node:32575) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n","timestamp":"2025-09-01T22:50:03","type":"err","process_id":14,"app_name":"whatsapp-orchestrator"}
+{"message":"(node:32608) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n","timestamp":"2025-09-01T22:50:11","type":"err","process_id":15,"app_name":"whatsapp-orchestrator"}
+{"message":"(node:32630) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n","timestamp":"2025-09-01T22:50:19","type":"err","process_id":16,"app_name":"whatsapp-orchestrator"}
+{"message":"(node:32654) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n","timestamp":"2025-09-01T22:50:27","type":"err","process_id":17,"app_name":"whatsapp-orchestrator"}
+{"message":"(node:32706) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n","timestamp":"2025-09-01T22:50:35","type":"err","process_id":18,"app_name":"whatsapp-orchestrator"}

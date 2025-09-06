@@ -1,0 +1,67 @@
+{
+  "timestamp": "2025-09-02T02:21:30.233Z",
+  "overall": "unhealthy",
+  "checks": [
+    {
+      "name": "PM2 Processes",
+      "status": "pass",
+      "details": [
+        "Total de processos: 10",
+        "Processos online: 10"
+      ]
+    },
+    {
+      "name": "System Resources",
+      "status": "fail",
+      "details": [
+        "Uso de memória: 98.9%",
+        "Load average: 1.94 (24.2%)",
+        "Uptime: 7.3 horas"
+      ]
+    },
+    {
+      "name": "Log Files",
+      "status": "pass",
+      "details": [
+        "Arquivos de log encontrados: 9",
+        "Tamanho total dos logs: 0.4 MB"
+      ]
+    },
+    {
+      "name": "Disk Space",
+      "status": "fail",
+      "details": [
+        "Uso do disco: 96%",
+        "Espaço disponível: 8.6Gi"
+      ]
+    },
+    {
+      "name": "Network Ports",
+      "status": "warn",
+      "details": [
+        "Portas em uso: ",
+        "Portas livres: 3000, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008"
+      ]
+    },
+    {
+      "name": "Dependencies",
+      "status": "pass",
+      "details": [
+        "✅ node_modules encontrado",
+        "✅ Projeto compilado (dist/ existe)",
+        "Projeto: zap-gpt v1.0.0"
+      ]
+    }
+  ],
+  "warnings": [
+    "Poucas portas em uso - sistema pode não estar rodando"
+  ],
+  "errors": [
+    "Uso crítico de memória (>90%)",
+    "Espaço em disco crítico (>90%)"
+  ],
+  "recommendations": [
+    "Reinicie processos ou adicione mais RAM",
+    "Libere espaço em disco urgentemente"
+  ]
+}

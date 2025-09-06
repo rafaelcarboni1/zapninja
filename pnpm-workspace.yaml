@@ -1,0 +1,10 @@
+# ZAPNINJA Monorepo Workspace Configuration
+# Defines workspace structure for Turbo + pnpm
+
+packages:
+  # Applications
+  - "apps/backend"
+  - "apps/frontend"
+  
+  # Shared packages
+  - "packages/*"

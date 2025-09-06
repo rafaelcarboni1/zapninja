@@ -1,0 +1,111 @@
+
+> @zapninja/database@1.0.0 build /Users/rafaelcarboni/Documents/ZAPNINJA/packages/database
+> tsup src/index.ts --format cjs,esm --dts
+
+CLI Building entry: src/index.ts
+CLI Using tsconfig: ../../tsconfig.json
+CLI tsup v8.5.0
+CLI Target: es2020
+CJS Build start
+ESM Build start
+✘ [ERROR] Could not resolve "./client/index.js"
+
+    src/index.ts:10:14:
+      10 │ export * from './client/index.js';
+         ╵               ~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./queries/index.js"
+
+    src/index.ts:13:14:
+      13 │ export * from './queries/index.js';
+         ╵               ~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./client/index.js"
+
+    src/index.ts:10:14:
+      10 │ export * from './client/index.js';
+         ╵               ~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./queries/index.js"
+
+    src/index.ts:13:14:
+      13 │ export * from './queries/index.js';
+         ╵               ~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./migrations/index.js"
+
+    src/index.ts:16:14:
+      16 │ export * from './migrations/index.js';
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./migrations/index.js"
+
+    src/index.ts:16:14:
+      16 │ export * from './migrations/index.js';
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./types/index.js"
+
+    src/index.ts:19:14:
+      19 │ export * from './types/index.js';
+         ╵               ~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./repositories/index.js"
+
+    src/index.ts:22:14:
+      22 │ export * from './repositories/index.js';
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./types/index.js"
+
+    src/index.ts:19:14:
+      19 │ export * from './types/index.js';
+         ╵               ~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./transactions/index.js"
+
+    src/index.ts:25:14:
+      25 │ export * from './transactions/index.js';
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+✘ [ERROR] Could not resolve "./repositories/index.js"
+
+    src/index.ts:22:14:
+      22 │ export * from './repositories/index.js';
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CJS Build failed
+✘ [ERROR] Could not resolve "./transactions/index.js"
+
+    src/index.ts:25:14:
+      25 │ export * from './transactions/index.js';
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Error: Build failed with 6 errors:
+src/index.ts:10:14: ERROR: Could not resolve "./client/index.js"
+src/index.ts:13:14: ERROR: Could not resolve "./queries/index.js"
+src/index.ts:16:14: ERROR: Could not resolve "./migrations/index.js"
+src/index.ts:19:14: ERROR: Could not resolve "./types/index.js"
+src/index.ts:22:14: ERROR: Could not resolve "./repositories/index.js"
+...
+    at failureErrorWithLog (/Users/rafaelcarboni/Documents/ZAPNINJA/node_modules/.pnpm/esbuild@0.25.9/node_modules/esbuild/lib/main.js:1467:15)
+    at /Users/rafaelcarboni/Documents/ZAPNINJA/node_modules/.pnpm/esbuild@0.25.9/node_modules/esbuild/lib/main.js:926:25
+    at runOnEndCallbacks (/Users/rafaelcarboni/Documents/ZAPNINJA/node_modules/.pnpm/esbuild@0.25.9/node_modules/esbuild/lib/main.js:1307:45)
+    at buildResponseToResult (/Users/rafaelcarboni/Documents/ZAPNINJA/node_modules/.pnpm/esbuild@0.25.9/node_modules/esbuild/lib/main.js:924:7)
+    at /Users/rafaelcarboni/Documents/ZAPNINJA/node_modules/.pnpm/esbuild@0.25.9/node_modules/esbuild/lib/main.js:951:16
+    at responseCallbacks.<computed> (/Users/rafaelcarboni/Documents/ZAPNINJA/node_modules/.pnpm/esbuild@0.25.9/node_modules/esbuild/lib/main.js:603:9)
+    at handleIncomingPacket (/Users/rafaelcarboni/Documents/ZAPNINJA/node_modules/.pnpm/esbuild@0.25.9/node_modules/esbuild/lib/main.js:658:12)
+    at Socket.readFromStdout (/Users/rafaelcarboni/Documents/ZAPNINJA/node_modules/.pnpm/esbuild@0.25.9/node_modules/esbuild/lib/main.js:581:7)
+    at Socket.emit (node:events:508:28)
+    at addChunk (node:internal/streams/readable:559:12)
+ESM Build failed
+DTS Build start
+src/index.ts(10,15): error TS2307: Cannot find module './client/index.js' or its corresponding type declarations.
+src/index.ts(13,15): error TS2307: Cannot find module './queries/index.js' or its corresponding type declarations.
+src/index.ts(16,15): error TS2307: Cannot find module './migrations/index.js' or its corresponding type declarations.
+src/index.ts(19,15): error TS2307: Cannot find module './types/index.js' or its corresponding type declarations.
+src/index.ts(22,15): error TS2307: Cannot find module './repositories/index.js' or its corresponding type declarations.
+src/index.ts(25,15): error TS2307: Cannot find module './transactions/index.js' or its corresponding type declarations.
+
+DTS Build error
+ ELIFECYCLE  Command failed with exit code 1.

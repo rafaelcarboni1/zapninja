@@ -1,0 +1,14 @@
+[build]
+builder = "nixpacks"
+buildCommand = "pnpm install && pnpm run build"
+
+[deploy]
+startCommand = "pnpm start"
+healthcheckPath = "/"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
+
+[env]
+NODE_ENV = "production"
+PORT = "$PORT"

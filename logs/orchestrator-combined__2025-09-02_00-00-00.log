@@ -1,0 +1,280 @@
+2025-09-01T21:24:49: [32m[2025-09-02T00:24:49.736Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T21:24:49: (node:1072) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+    at name (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:73:19)
+    at lexer (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:91:27)
+    at lexer.next (<anonymous>)
+    at Iter.peek (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:106:38)
+    at Iter.tryConsume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:112:28)
+    at Iter.text (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:128:30)
+    at consume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:152:29)
+    at parse (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:183:20)
+    at /Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:294:74
+    at Array.map (<anonymous>)
+2025-09-01T21:24:50: ✅ 2 sessões ativas carregadas
+2025-09-01T21:24:57: [32m[2025-09-02T00:24:57.669Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T21:24:57: (node:1104) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+    at name (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:73:19)
+    at lexer (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:91:27)
+    at lexer.next (<anonymous>)
+    at Iter.peek (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:106:38)
+    at Iter.tryConsume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:112:28)
+    at Iter.text (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:128:30)
+    at consume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:152:29)
+    at parse (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:183:20)
+    at /Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:294:74
+    at Array.map (<anonymous>)
+2025-09-01T21:24:58: ✅ 2 sessões ativas carregadas
+2025-09-01T21:25:05: [32m[2025-09-02T00:25:05.751Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T21:25:05: (node:1600) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+    at name (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:73:19)
+    at lexer (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:91:27)
+    at lexer.next (<anonymous>)
+    at Iter.peek (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:106:38)
+    at Iter.tryConsume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:112:28)
+    at Iter.text (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:128:30)
+    at consume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:152:29)
+    at parse (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:183:20)
+    at /Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:294:74
+    at Array.map (<anonymous>)
+2025-09-01T21:25:05: ✅ 2 sessões ativas carregadas
+2025-09-01T21:25:14: [32m[2025-09-02T00:25:14.043Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T21:25:14: (node:1793) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+    at name (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:73:19)
+    at lexer (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:91:27)
+    at lexer.next (<anonymous>)
+    at Iter.peek (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:106:38)
+    at Iter.tryConsume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:112:28)
+    at Iter.text (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:128:30)
+    at consume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:152:29)
+    at parse (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:183:20)
+    at /Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:294:74
+    at Array.map (<anonymous>)
+2025-09-01T21:25:14: ✅ 2 sessões ativas carregadas
+2025-09-01T21:25:21: [32m[2025-09-02T00:25:21.932Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T21:25:21: (node:1820) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+    at name (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:73:19)
+    at lexer (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:91:27)
+    at lexer.next (<anonymous>)
+    at Iter.peek (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:106:38)
+    at Iter.tryConsume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:112:28)
+    at Iter.text (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:128:30)
+    at consume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:152:29)
+    at parse (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:183:20)
+    at /Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:294:74
+    at Array.map (<anonymous>)
+2025-09-01T21:25:22: ✅ 2 sessões ativas carregadas
+2025-09-01T21:25:30: [32m[2025-09-02T00:25:30.006Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T21:25:30: (node:1843) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+    at name (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:73:19)
+    at lexer (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:91:27)
+    at lexer.next (<anonymous>)
+    at Iter.peek (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:106:38)
+    at Iter.tryConsume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:112:28)
+    at Iter.text (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:128:30)
+    at consume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:152:29)
+    at parse (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:183:20)
+    at /Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:294:74
+    at Array.map (<anonymous>)
+2025-09-01T21:25:30: ✅ 2 sessões ativas carregadas
+2025-09-01T21:25:38: [32m[2025-09-02T00:25:38.031Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T21:25:38: (node:1883) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+    at name (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:73:19)
+    at lexer (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:91:27)
+    at lexer.next (<anonymous>)
+    at Iter.peek (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:106:38)
+    at Iter.tryConsume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:112:28)
+    at Iter.text (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:128:30)
+    at consume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:152:29)
+    at parse (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:183:20)
+    at /Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:294:74
+    at Array.map (<anonymous>)
+2025-09-01T21:25:38: ✅ 2 sessões ativas carregadas
+2025-09-01T21:25:46: [32m[2025-09-02T00:25:46.078Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T21:25:46: (node:1906) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+TypeError: Missing parameter name at 1: https://git.new/pathToRegexpError
+    at name (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:73:19)
+    at lexer (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:91:27)
+    at lexer.next (<anonymous>)
+    at Iter.peek (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:106:38)
+    at Iter.tryConsume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:112:28)
+    at Iter.text (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:128:30)
+    at consume (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:152:29)
+    at parse (/Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:183:20)
+    at /Users/rafaelcarboni/Downloads/zap-gpt-free-main-bruna/node_modules/path-to-regexp/dist/index.js:294:74
+    at Array.map (<anonymous>)
+2025-09-01T21:25:46: ✅ 2 sessões ativas carregadas
+2025-09-01T21:55:07: [32m[2025-09-02T00:55:07.299Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T21:55:07: [32m[2025-09-02T00:55:07.299Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T21:55:07: (node:12409) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T21:55:07: (node:12408) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T21:55:07: ✅ 2 sessões ativas carregadas
+2025-09-01T21:55:07: ✅ 2 sessões ativas carregadas
+2025-09-01T21:55:15: [32m[2025-09-02T00:55:15.400Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T21:55:15: [32m[2025-09-02T00:55:15.402Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T21:55:15: (node:12476) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T21:55:15: (node:12477) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T21:55:15: ✅ 2 sessões ativas carregadas
+2025-09-01T21:55:15: ✅ 2 sessões ativas carregadas
+2025-09-01T21:55:23: [32m[2025-09-02T00:55:23.619Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T21:55:23: [32m[2025-09-02T00:55:23.619Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T21:55:23: (node:12538) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T21:55:23: (node:12539) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T21:55:23: ✅ 2 sessões ativas carregadas
+2025-09-01T21:55:23: ✅ 2 sessões ativas carregadas
+2025-09-01T21:55:31: [32m[2025-09-02T00:55:31.777Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T21:55:31: [32m[2025-09-02T00:55:31.777Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T21:55:31: (node:12639) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T21:55:31: (node:12638) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T21:55:32: ✅ 2 sessões ativas carregadas
+2025-09-01T21:55:32: ✅ 2 sessões ativas carregadas
+2025-09-01T22:16:56: [32m[2025-09-02T01:16:56.968Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:16:57: (node:19031) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:16:57: ✅ 2 sessões ativas carregadas
+2025-09-01T22:17:05: [32m[2025-09-02T01:17:04.995Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:17:05: (node:19089) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:17:05: ✅ 2 sessões ativas carregadas
+2025-09-01T22:17:13: [32m[2025-09-02T01:17:13.031Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:17:13: (node:19121) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:17:13: ✅ 2 sessões ativas carregadas
+2025-09-01T22:17:21: [32m[2025-09-02T01:17:21.106Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:17:21: (node:19153) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:17:21: ✅ 2 sessões ativas carregadas
+2025-09-01T22:17:29: [32m[2025-09-02T01:17:29.173Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:17:29: (node:19202) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:17:29: ✅ 2 sessões ativas carregadas
+2025-09-01T22:17:37: [32m[2025-09-02T01:17:37.303Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:17:37: (node:19256) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:17:37: ✅ 2 sessões ativas carregadas
+2025-09-01T22:17:45: [32m[2025-09-02T01:17:45.310Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:17:45: (node:19289) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:17:45: ✅ 2 sessões ativas carregadas
+2025-09-01T22:17:53: [32m[2025-09-02T01:17:53.349Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:17:53: (node:19332) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:17:53: ✅ 2 sessões ativas carregadas
+2025-09-01T22:22:15: [32m[2025-09-02T01:22:15.546Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:22:15: (node:21289) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:22:16: ✅ 2 sessões ativas carregadas
+2025-09-01T22:22:23: [32m[2025-09-02T01:22:23.552Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:22:23: (node:21326) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:22:23: ✅ 2 sessões ativas carregadas
+2025-09-01T22:22:31: [32m[2025-09-02T01:22:31.606Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:22:31: (node:21343) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:22:31: ✅ 2 sessões ativas carregadas
+2025-09-01T22:22:39: [32m[2025-09-02T01:22:39.660Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:22:39: (node:21377) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:22:39: ✅ 2 sessões ativas carregadas
+2025-09-01T22:22:47: [32m[2025-09-02T01:22:47.731Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:22:47: (node:21410) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:22:48: ✅ 2 sessões ativas carregadas
+2025-09-01T22:22:55: [32m[2025-09-02T01:22:55.782Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:22:55: (node:21433) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:22:56: ✅ 2 sessões ativas carregadas
+2025-09-01T22:23:03: [32m[2025-09-02T01:23:03.839Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:23:03: (node:21469) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:23:04: ✅ 2 sessões ativas carregadas
+2025-09-01T22:23:11: [32m[2025-09-02T01:23:11.886Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:23:11: (node:21487) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:23:12: ✅ 2 sessões ativas carregadas
+2025-09-01T22:38:53: [32m[2025-09-02T01:38:52.995Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:38:53: [32m[2025-09-02T01:38:53.043Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:38:53: (node:26325) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:38:53: (node:26341) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:38:53: ✅ 2 sessões ativas carregadas
+2025-09-01T22:38:53: ✅ 2 sessões ativas carregadas
+2025-09-01T22:39:01: [32m[2025-09-02T01:39:01.000Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:39:01: (node:26378) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:39:01: [32m[2025-09-02T01:39:01.114Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:39:01: (node:26395) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:39:01: ✅ 2 sessões ativas carregadas
+2025-09-01T22:39:01: ✅ 2 sessões ativas carregadas
+2025-09-01T22:39:09: [32m[2025-09-02T01:39:09.178Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:39:09: (node:26479) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:39:09: [32m[2025-09-02T01:39:09.267Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:39:09: (node:26480) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:39:09: ✅ 2 sessões ativas carregadas
+2025-09-01T22:39:09: ✅ 2 sessões ativas carregadas
+2025-09-01T22:39:17: [32m[2025-09-02T01:39:17.366Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:39:17: (node:26534) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:39:17: [32m[2025-09-02T01:39:17.429Z] [INFO] Configuração do Supabase carregada[0m
+2025-09-01T22:39:17: (node:26535) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+2025-09-01T22:39:17: ✅ 2 sessões ativas carregadas
+2025-09-01T22:39:17: ✅ 2 sessões ativas carregadas
+{"message":"\u001b[32m[2025-09-02T01:49:39.062Z] [INFO] Configuração do Supabase carregada\u001b[0m\n","timestamp":"2025-09-01T22:49:39","type":"out","process_id":11,"app_name":"whatsapp-orchestrator"}
+{"message":"(node:32469) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n","timestamp":"2025-09-01T22:49:39","type":"err","process_id":11,"app_name":"whatsapp-orchestrator"}
+{"message":"✅ 2 sessões ativas carregadas\n","timestamp":"2025-09-01T22:49:39","type":"out","process_id":11,"app_name":"whatsapp-orchestrator"}
+{"message":"\u001b[32m[2025-09-02T01:49:47.128Z] [INFO] Configuração do Supabase carregada\u001b[0m\n","timestamp":"2025-09-01T22:49:47","type":"out","process_id":12,"app_name":"whatsapp-orchestrator"}
+{"message":"(node:32500) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n","timestamp":"2025-09-01T22:49:47","type":"err","process_id":12,"app_name":"whatsapp-orchestrator"}
+{"message":"✅ 2 sessões ativas carregadas\n","timestamp":"2025-09-01T22:49:47","type":"out","process_id":12,"app_name":"whatsapp-orchestrator"}
+{"message":"\u001b[32m[2025-09-02T01:49:55.161Z] [INFO] Configuração do Supabase carregada\u001b[0m\n","timestamp":"2025-09-01T22:49:55","type":"out","process_id":13,"app_name":"whatsapp-orchestrator"}
+{"message":"(node:32524) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n","timestamp":"2025-09-01T22:49:55","type":"err","process_id":13,"app_name":"whatsapp-orchestrator"}
+{"message":"✅ 2 sessões ativas carregadas\n","timestamp":"2025-09-01T22:49:55","type":"out","process_id":13,"app_name":"whatsapp-orchestrator"}
+{"message":"\u001b[32m[2025-09-02T01:50:03.234Z] [INFO] Configuração do Supabase carregada\u001b[0m\n","timestamp":"2025-09-01T22:50:03","type":"out","process_id":14,"app_name":"whatsapp-orchestrator"}
+{"message":"(node:32575) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n","timestamp":"2025-09-01T22:50:03","type":"err","process_id":14,"app_name":"whatsapp-orchestrator"}
+{"message":"✅ 2 sessões ativas carregadas\n","timestamp":"2025-09-01T22:50:03","type":"out","process_id":14,"app_name":"whatsapp-orchestrator"}
+{"message":"\u001b[32m[2025-09-02T01:50:11.308Z] [INFO] Configuração do Supabase carregada\u001b[0m\n","timestamp":"2025-09-01T22:50:11","type":"out","process_id":15,"app_name":"whatsapp-orchestrator"}
+{"message":"(node:32608) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n","timestamp":"2025-09-01T22:50:11","type":"err","process_id":15,"app_name":"whatsapp-orchestrator"}
+{"message":"✅ 2 sessões ativas carregadas\n","timestamp":"2025-09-01T22:50:11","type":"out","process_id":15,"app_name":"whatsapp-orchestrator"}
+{"message":"\u001b[32m[2025-09-02T01:50:19.383Z] [INFO] Configuração do Supabase carregada\u001b[0m\n","timestamp":"2025-09-01T22:50:19","type":"out","process_id":16,"app_name":"whatsapp-orchestrator"}
+{"message":"(node:32630) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n","timestamp":"2025-09-01T22:50:19","type":"err","process_id":16,"app_name":"whatsapp-orchestrator"}
+{"message":"✅ 2 sessões ativas carregadas\n","timestamp":"2025-09-01T22:50:19","type":"out","process_id":16,"app_name":"whatsapp-orchestrator"}
+{"message":"\u001b[32m[2025-09-02T01:50:27.545Z] [INFO] Configuração do Supabase carregada\u001b[0m\n","timestamp":"2025-09-01T22:50:27","type":"out","process_id":17,"app_name":"whatsapp-orchestrator"}
+{"message":"(node:32654) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n","timestamp":"2025-09-01T22:50:27","type":"err","process_id":17,"app_name":"whatsapp-orchestrator"}
+{"message":"✅ 2 sessões ativas carregadas\n","timestamp":"2025-09-01T22:50:27","type":"out","process_id":17,"app_name":"whatsapp-orchestrator"}
+{"message":"\u001b[32m[2025-09-02T01:50:35.557Z] [INFO] Configuração do Supabase carregada\u001b[0m\n","timestamp":"2025-09-01T22:50:35","type":"out","process_id":18,"app_name":"whatsapp-orchestrator"}
+{"message":"(node:32706) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n","timestamp":"2025-09-01T22:50:35","type":"err","process_id":18,"app_name":"whatsapp-orchestrator"}
+{"message":"✅ 2 sessões ativas carregadas\n","timestamp":"2025-09-01T22:50:35","type":"out","process_id":18,"app_name":"whatsapp-orchestrator"}

@@ -1,0 +1,52 @@
+{
+  "name": "zapninja-monorepo",
+  "version": "1.0.0",
+  "description": "ZAPNINJA - Multi-session WhatsApp Bot with AI Integration (Monorepo)",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "clean": "turbo run clean",
+    "dev:backend": "turbo run dev --filter=@zapninja/backend",
+    "dev:frontend": "turbo run dev --filter=@zapninja/frontend",
+    "build:backend": "turbo run build --filter=@zapninja/backend",
+    "build:frontend": "turbo run build --filter=@zapninja/frontend",
+    "db:status": "turbo run db:status --filter=@zapninja/backend",
+    "db:migrate": "turbo run db:migrate --filter=@zapninja/backend",
+    "db:rollback": "turbo run db:rollback --filter=@zapninja/backend",
+    "db:validate": "turbo run db:validate --filter=@zapninja/backend",
+    "db:fix": "turbo run db:fix --filter=@zapninja/backend",
+    "db:report": "turbo run db:report --filter=@zapninja/backend"
+  },
+  "keywords": [
+    "whatsapp",
+    "bot", 
+    "ai",
+    "chatgpt",
+    "gemini",
+    "monorepo",
+    "turbo"
+  ],
+  "author": {
+    "name": "Rafael Carboni",
+    "email": "rafaeldacunhacarboni@gmail.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.12.2",
+  "devDependencies": {
+    "turbo": "^2.5.6",
+    "typescript": "^5.3.3"
+  }
+}

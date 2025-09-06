@@ -1,0 +1,74 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env*"
+      ],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "!.next/cache/**"
+      ]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^build"]
+    },
+    "start": {
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".eslintrc*",
+        "eslint.config.*"
+      ]
+    },
+    "typecheck": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "tsconfig*.json"
+      ]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "jest.config*"
+      ]
+    },
+    "clean": {
+      "cache": false
+    },
+    "db:status": {
+      "cache": false
+    },
+    "db:migrate": {
+      "cache": false
+    },
+    "db:validate": {
+      "cache": false
+    }
+  },
+  "globalDependencies": [
+    "**/.env*"
+  ],
+  "globalEnv": [
+    "NODE_ENV",
+    "DATABASE_URL",
+    "SUPABASE_URL",
+    "SUPABASE_ANON_KEY",
+    "OPENAI_KEY",
+    "GEMINI_KEY",
+    "REDIS_URL",
+    "REDIS_HOST",
+    "REDIS_PORT",
+    "REDIS_PASSWORD"
+  ]
+}
