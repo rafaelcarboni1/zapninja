@@ -77,30 +77,32 @@ let sessionStatus = {
   uptime: Date.now()
 };
 
-// Configurar servidor HTTP para monitoramento
-const app = express();
-app.use(express.json());
+// Em Evolution, não abrimos servidor por sessão (monitoramento central via orquestrador)
+if (env.whatsappProvider !== 'evolution') {
+  const app = express();
+  app.use(express.json());
 
-app.get('/health', (req, res) => {
-  res.json({
-    ...sessionStatus,
-    uptime: Date.now() - sessionStatus.uptime
+  app.get('/health', (req, res) => {
+    res.json({
+      ...sessionStatus,
+      uptime: Date.now() - sessionStatus.uptime
+    });
   });
-});
 
-app.get('/status', (req, res) => {
-  res.json(sessionStatus);
-});
+  app.get('/status', (req, res) => {
+    res.json(sessionStatus);
+  });
 
-app.post('/shutdown', (req, res) => {
-  res.json({ message: 'Shutdown initiated' });
-  setTimeout(() => process.exit(0), 1000);
-});
+  app.post('/shutdown', (req, res) => {
+    res.json({ message: 'Shutdown initiated' });
+    setTimeout(() => process.exit(0), 1000);
+  });
 
-const server = http.createServer(app);
-server.listen(SESSION_PORT, () => {
-  console.log(`📊 [${SESSION_NAME}] Servidor de monitoramento rodando na porta ${SESSION_PORT}`);
-});
+  const server = http.createServer(app);
+  server.listen(SESSION_PORT, () => {
+    console.log(`📊 [${SESSION_NAME}] Servidor de monitoramento rodando na porta ${SESSION_PORT}`);
+  });
+}
 
 const messageBufferPerChatId = new Map();
 const messageTimeouts = new Map();
@@ -674,9 +676,7 @@ if (
 
 if (env.whatsappProvider === 'evolution') {
   console.log('📡 Using Evolution API provider');
-  // For Evolution, we don't instantiate a local puppeteer client; just expose health server
-  // and rely on evolutionClient for messaging operations.
-  logger.info('Evolution provider active; skipping local WPPConnect startup');
+  logger.info('Evolution provider active; skipping local WPPConnect startup and per-session server');
   sessionStatus.status = 'running';
   sessionStatus.connected = true;
 } else {
