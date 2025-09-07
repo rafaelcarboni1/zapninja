@@ -1,0 +1,83 @@
+
+> @zapninja/shared@1.0.0 typecheck /Users/rafaelcarboni/Documents/ZAPNINJA/packages/shared
+> tsc --noEmit
+
+../database/src/railway-connection.ts(9,47): error TS2307: Cannot find module 'pg' or its corresponding type declarations.
+../database/src/railway-connection.ts(10,19): error TS2307: Cannot find module 'ioredis' or its corresponding type declarations.
+../database/src/railway-connection.ts(79,28): error TS7006: Parameter 'err' implicitly has an 'any' type.
+../database/src/railway-connection.ts(88,29): error TS7006: Parameter 'err' implicitly has an 'any' type.
+../database/src/railway-connection.ts(111,63): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Record<string, any> | Error | undefined'.
+../database/src/railway-connection.ts(123,59): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Record<string, any> | Error | undefined'.
+../database/src/railway-connection.ts(162,42): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Record<string, any> | Error | undefined'.
+../database/src/railway-connection.ts(200,42): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Record<string, any> | Error | undefined'.
+../database/src/railway-connection.ts(216,53): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Record<string, any> | Error | undefined'.
+../database/src/railway-connection.ts(223,50): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Record<string, any> | Error | undefined'.
+src/config/environment.ts(9,20): error TS2307: Cannot find module 'dotenv' or its corresponding type declarations.
+src/config/index.ts(53,14): error TS2323: Cannot redeclare exported variable 'ConfigManager'.
+src/config/index.ts(205,14): error TS2323: Cannot redeclare exported variable 'ConfigPresets'.
+src/config/index.ts(296,14): error TS2323: Cannot redeclare exported variable 'ConfigValidator'.
+src/config/index.ts(363,3): error TS2323: Cannot redeclare exported variable 'ConfigManager'.
+src/config/index.ts(363,3): error TS2484: Export declaration conflicts with exported declaration of 'ConfigManager'.
+src/config/index.ts(364,3): error TS2323: Cannot redeclare exported variable 'ConfigPresets'.
+src/config/index.ts(364,3): error TS2484: Export declaration conflicts with exported declaration of 'ConfigPresets'.
+src/config/index.ts(365,3): error TS2323: Cannot redeclare exported variable 'ConfigValidator'.
+src/config/index.ts(365,3): error TS2484: Export declaration conflicts with exported declaration of 'ConfigValidator'.
+src/services/health-check.ts(9,27): error TS6059: File '/Users/rafaelcarboni/Documents/ZAPNINJA/packages/database/src/railway-connection.ts' is not under 'rootDir' '/Users/rafaelcarboni/Documents/ZAPNINJA/packages/shared/src'. 'rootDir' is expected to contain all source files.
+src/services/health-check.ts(54,26): error TS2339: Property 'pool' does not exist on type '{ database: boolean; redis: boolean; connected: boolean; }'.
+src/services/health-check.ts(163,36): error TS2345: Argument of type '"healthy" | "unhealthy" | "degraded"' is not assignable to parameter of type '"healthy" | "unhealthy"'.
+  Type '"degraded"' is not assignable to type '"healthy" | "unhealthy"'.
+src/services/health-check.ts(276,34): error TS2345: Argument of type '"healthy" | "unhealthy" | "degraded"' is not assignable to parameter of type '"healthy" | "unhealthy"'.
+  Type '"degraded"' is not assignable to type '"healthy" | "unhealthy"'.
+src/services/health-check.ts(319,54): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Record<string, any> | Error | undefined'.
+src/services/health-check.ts(340,54): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'Record<string, any> | Error | undefined'.
+src/utils/index.ts(13,14): error TS2323: Cannot redeclare exported variable 'PhoneUtils'.
+src/utils/index.ts(58,14): error TS2323: Cannot redeclare exported variable 'DateUtils'.
+src/utils/index.ts(112,14): error TS2323: Cannot redeclare exported variable 'StringUtils'.
+src/utils/index.ts(161,14): error TS2323: Cannot redeclare exported variable 'ObjectUtils'.
+src/utils/index.ts(177,9): error TS2322: Type '{}' is not assignable to type 'T[Extract<keyof T, string>]'.
+  'T[Extract<keyof T, string>]' could be instantiated with an arbitrary type which could be unrelated to '{}'.
+src/utils/index.ts(208,18): error TS2322: Type 'T' is not assignable to type 'object'.
+src/utils/index.ts(231,14): error TS2323: Cannot redeclare exported variable 'ArrayUtils'.
+src/utils/index.ts(276,14): error TS2323: Cannot redeclare exported variable 'TimingUtils'.
+src/utils/index.ts(324,14): error TS2323: Cannot redeclare exported variable 'ErrorUtils'.
+src/utils/index.ts(360,14): error TS2323: Cannot redeclare exported variable 'ContextUtils'.
+src/utils/index.ts(401,14): error TS2323: Cannot redeclare exported variable 'ValidationUtils'.
+src/utils/index.ts(449,3): error TS2323: Cannot redeclare exported variable 'PhoneUtils'.
+src/utils/index.ts(449,3): error TS2484: Export declaration conflicts with exported declaration of 'PhoneUtils'.
+src/utils/index.ts(450,3): error TS2323: Cannot redeclare exported variable 'DateUtils'.
+src/utils/index.ts(450,3): error TS2484: Export declaration conflicts with exported declaration of 'DateUtils'.
+src/utils/index.ts(451,3): error TS2323: Cannot redeclare exported variable 'StringUtils'.
+src/utils/index.ts(451,3): error TS2484: Export declaration conflicts with exported declaration of 'StringUtils'.
+src/utils/index.ts(452,3): error TS2323: Cannot redeclare exported variable 'ObjectUtils'.
+src/utils/index.ts(452,3): error TS2484: Export declaration conflicts with exported declaration of 'ObjectUtils'.
+src/utils/index.ts(453,3): error TS2323: Cannot redeclare exported variable 'ArrayUtils'.
+src/utils/index.ts(453,3): error TS2484: Export declaration conflicts with exported declaration of 'ArrayUtils'.
+src/utils/index.ts(454,3): error TS2323: Cannot redeclare exported variable 'TimingUtils'.
+src/utils/index.ts(454,3): error TS2484: Export declaration conflicts with exported declaration of 'TimingUtils'.
+src/utils/index.ts(455,3): error TS2323: Cannot redeclare exported variable 'ErrorUtils'.
+src/utils/index.ts(455,3): error TS2484: Export declaration conflicts with exported declaration of 'ErrorUtils'.
+src/utils/index.ts(456,3): error TS2323: Cannot redeclare exported variable 'ContextUtils'.
+src/utils/index.ts(456,3): error TS2484: Export declaration conflicts with exported declaration of 'ContextUtils'.
+src/utils/index.ts(457,3): error TS2323: Cannot redeclare exported variable 'ValidationUtils'.
+src/utils/index.ts(457,3): error TS2484: Export declaration conflicts with exported declaration of 'ValidationUtils'.
+src/utils/logger.ts(9,45): error TS2307: Cannot find module 'winston' or its corresponding type declarations.
+src/utils/logger.ts(60,28): error TS7031: Binding element 'timestamp' implicitly has an 'any' type.
+src/utils/logger.ts(60,39): error TS7031: Binding element 'level' implicitly has an 'any' type.
+src/utils/logger.ts(60,46): error TS7031: Binding element 'message' implicitly has an 'any' type.
+src/validators/index.ts(27,14): error TS2323: Cannot redeclare exported variable 'SessionValidators'.
+src/validators/index.ts(232,14): error TS2323: Cannot redeclare exported variable 'UserValidators'.
+src/validators/index.ts(263,14): error TS2323: Cannot redeclare exported variable 'MessageValidators'.
+src/validators/index.ts(303,14): error TS2323: Cannot redeclare exported variable 'ContextValidators'.
+src/validators/index.ts(328,32): error TS2345: Argument of type 'string' is not assignable to parameter of type '"preferences" | "profile" | "conversation_history" | "behavioral_pattern" | "topic_interest" | "interaction_style"'.
+src/validators/index.ts(364,14): error TS2323: Cannot redeclare exported variable 'DataValidators'.
+src/validators/index.ts(450,3): error TS2323: Cannot redeclare exported variable 'SessionValidators'.
+src/validators/index.ts(450,3): error TS2484: Export declaration conflicts with exported declaration of 'SessionValidators'.
+src/validators/index.ts(451,3): error TS2323: Cannot redeclare exported variable 'UserValidators'.
+src/validators/index.ts(451,3): error TS2484: Export declaration conflicts with exported declaration of 'UserValidators'.
+src/validators/index.ts(452,3): error TS2323: Cannot redeclare exported variable 'MessageValidators'.
+src/validators/index.ts(452,3): error TS2484: Export declaration conflicts with exported declaration of 'MessageValidators'.
+src/validators/index.ts(453,3): error TS2323: Cannot redeclare exported variable 'ContextValidators'.
+src/validators/index.ts(453,3): error TS2484: Export declaration conflicts with exported declaration of 'ContextValidators'.
+src/validators/index.ts(454,3): error TS2323: Cannot redeclare exported variable 'DataValidators'.
+src/validators/index.ts(454,3): error TS2484: Export declaration conflicts with exported declaration of 'DataValidators'.
+ ELIFECYCLE  Command failed with exit code 2.

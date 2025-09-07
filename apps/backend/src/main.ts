@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { MainLauncher } from './dashboard/main-launcher';
+import { startHealthServer } from './orchestrator/health-server';
 
 /**
  * Ponto de entrada principal do ZAPNINJA
@@ -9,6 +10,8 @@ import { MainLauncher } from './dashboard/main-launcher';
 
 async function main() {
   try {
+    // Start lightweight health server for Railway
+    startHealthServer();
     await MainLauncher.start();
   } catch (error) {
     console.error('Erro fatal:', error);
