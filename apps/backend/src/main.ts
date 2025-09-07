@@ -2,6 +2,7 @@
 
 import { MainLauncher } from './dashboard/main-launcher';
 import './orchestrator/server';
+import { env } from './config/env';
 
 /**
  * Ponto de entrada principal do ZAPNINJA
@@ -10,7 +11,12 @@ import './orchestrator/server';
 
 async function main() {
   try {
-    // Orchestrator já inicia e expõe /health; iniciar launcher principal
+    // Em modo Evolution, não iniciar o launcher interativo
+    if (env.whatsappProvider === 'evolution') {
+      console.log('⚙️ Evolution mode: iniciando apenas o orquestrador (sem dashboard/launcher).');
+      return;
+    }
+    // Orchestrator já inicia e expõe /health; iniciar launcher principal (WPPConnect)
     await MainLauncher.start();
   } catch (error) {
     console.error('Erro fatal:', error);
