@@ -5,6 +5,18 @@ const nextConfig: NextConfig = {
     domains: ['localhost'],
     dangerouslyAllowSVG: true,
   },
+  async rewrites() {
+    // Em produção, garanta que '/' aponte para /api/health para o healthcheck da Railway
+    if (process.env.NODE_ENV === 'production') {
+      return [
+        {
+          source: '/',
+          destination: '/api/health',
+        },
+      ]
+    }
+    return []
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
