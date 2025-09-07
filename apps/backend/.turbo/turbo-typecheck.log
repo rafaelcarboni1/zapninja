@@ -1,0 +1,4 @@
+
+> @zapninja/backend@1.0.0 typecheck /Users/rafaelcarboni/Documents/ZAPNINJA/apps/backend
+> tsc --noEmit
+

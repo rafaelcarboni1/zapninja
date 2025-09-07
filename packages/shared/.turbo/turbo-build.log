@@ -29,6 +29,8 @@ ESM Build start
 
 
 
+ESM dist/index.mjs 15.44 KB
+ESM ⚡️ Build success in 1007ms
 
  WARN  [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe condition "types" here will never be used as it comes after both "import" and "require"[0m [package.json]
 
@@ -50,11 +52,6 @@ ESM Build start
 
 
 
-ESM dist/index.mjs 15.44 KB
-ESM ⚡️ Build success in 143ms
 CJS dist/index.js 20.39 KB
-CJS ⚡️ Build success in 143ms
+CJS ⚡️ Build success in 1023ms
 DTS Build start
-DTS ⚡️ Build success in 1982ms
-DTS dist/index.d.ts  28.10 KB
-DTS dist/index.d.mts 28.10 KB
