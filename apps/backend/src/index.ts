@@ -45,7 +45,8 @@ function parseCommandLineArgs(): { sessionName?: string; port?: number; aiModel?
 // Processar argumentos da linha de comando
 const cmdArgs = parseCommandLineArgs();
 const SESSION_NAME = cmdArgs.sessionName || process.env.SESSION_NAME || 'sessionName';
-const SESSION_PORT = cmdArgs.port || parseInt(process.env.PORT || '3000');
+// Use a dedicated SESSION_PORT to avoid clashing with service PORT used by Railway healthcheck
+const SESSION_PORT = cmdArgs.port || parseInt(process.env.SESSION_PORT || '3001');
 const AI_MODEL_OVERRIDE = cmdArgs.aiModel;
 
 // Verificar se este processo deve iniciar uma sessão WhatsApp

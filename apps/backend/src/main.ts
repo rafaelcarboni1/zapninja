@@ -2,6 +2,7 @@
 
 import { MainLauncher } from './dashboard/main-launcher';
 import { startHealthServer } from './orchestrator/health-server';
+import './orchestrator/server';
 
 /**
  * Ponto de entrada principal do ZAPNINJA
@@ -10,7 +11,7 @@ import { startHealthServer } from './orchestrator/health-server';
 
 async function main() {
   try {
-    // Start lightweight health server for Railway
+    // Start lightweight health server for Railway and orchestrator server
     startHealthServer();
     await MainLauncher.start();
   } catch (error) {
