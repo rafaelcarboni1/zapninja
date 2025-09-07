@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
+const ORCH_URL = process.env.NEXT_PUBLIC_ORCHESTRATOR_URL || process.env.ORCHESTRATOR_URL || 'http://localhost:4000'
 
 export async function POST(request: NextRequest) {
   try {
@@ -33,14 +34,19 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Atualizar status da sessão para inativa
-    const { error: updateError } = await supabase
-      .from('whatsapp_sessions')
-      .update({ 
-        is_active: false,
-        updated_at: new Date().toISOString()
-      })
-      .eq('id', sessionId)
+    // Atualizar status se supabase estiver disponível
+    if (supabase) {
+      const { error: updateError } = await supabase
+        .from('whatsapp_sessions')
+        .update({ 
+          is_active: false,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', sessionId)
+      if (updateError) {
+        console.error('Erro ao atualizar sessão:', updateError)
+      }
+    }
 
     if (updateError) {
       console.error('Erro ao atualizar sessão:', updateError)
@@ -52,8 +58,7 @@ export async function POST(request: NextRequest) {
 
     // Disparar orquestrador do backend (HTTP)
     try {
-      const orchestratorUrl = process.env.NEXT_PUBLIC_ORCHESTRATOR_URL || 'http://localhost:4000'
-      await fetch(`${orchestratorUrl}/sessions/stop`, {
+      await fetch(`${ORCH_URL}/sessions/stop`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sessionName: session.session_name })
