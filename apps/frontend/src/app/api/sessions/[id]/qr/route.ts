@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 
+const ORCH_URL = process.env.NEXT_PUBLIC_ORCHESTRATOR_URL || process.env.ORCHESTRATOR_URL || 'http://localhost:4000'
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -29,12 +31,14 @@ export async function GET(
       )
     }
 
-    // Simular geração de QR Code (em produção, integraria com WhatsApp Web API)
-    // Por enquanto, retorna um QR code de exemplo
-    const mockQRCode = await generateMockQRCode(session.session_name)
-
+    // Buscar QR real via orquestrador Evolution
+    const resp = await fetch(`${ORCH_URL}/evolution/instances/${encodeURIComponent(session.session_name)}/qr`, { cache: 'no-store' })
+    if (!resp.ok) {
+      return NextResponse.json({ error: 'QR indisponível' }, { status: 502 })
+    }
+    const data = await resp.json()
     return NextResponse.json({
-      qrCode: mockQRCode,
+      qrCode: data.qrCode,
       status: session.is_active ? 'connected' : 'waiting',
       sessionName: session.session_name
     })
@@ -48,39 +52,7 @@ export async function GET(
   }
 }
 
-// Função para gerar QR Code mockado (base64)
-async function generateMockQRCode(sessionName: string): Promise<string> {
-  // Em produção real, isso seria integrado com @wppconnect-team/wppconnect
-  // Por enquanto, retorna um QR code base64 de exemplo
-  
-  const qrText = `whatsapp-session:${sessionName}:${Date.now()}`
-  
-  // QR Code SVG simples como base64
-  const svgQR = `
-  <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-    <rect width="200" height="200" fill="white"/>
-    <rect x="20" y="20" width="20" height="20" fill="black"/>
-    <rect x="60" y="20" width="20" height="20" fill="black"/>
-    <rect x="100" y="20" width="20" height="20" fill="black"/>
-    <rect x="140" y="20" width="20" height="20" fill="black"/>
-    <rect x="20" y="60" width="20" height="20" fill="black"/>
-    <rect x="100" y="60" width="20" height="20" fill="black"/>
-    <rect x="180" y="60" width="20" height="20" fill="black"/>
-    <rect x="20" y="100" width="20" height="20" fill="black"/>
-    <rect x="60" y="100" width="20" height="20" fill="black"/>
-    <rect x="140" y="100" width="20" height="20" fill="black"/>
-    <rect x="180" y="100" width="20" height="20" fill="black"/>
-    <rect x="20" y="140" width="20" height="20" fill="black"/>
-    <rect x="140" y="140" width="20" height="20" fill="black"/>
-    <rect x="60" y="180" width="20" height="20" fill="black"/>
-    <rect x="100" y="180" width="20" height="20" fill="black"/>
-    <rect x="180" y="180" width="20" height="20" fill="black"/>
-    <text x="100" y="110" text-anchor="middle" font-size="12" fill="gray">${sessionName}</text>
-  </svg>
-  `
-  
-  return Buffer.from(svgQR).toString('base64')
-}
+// Sem mock em produção
 
 export async function OPTIONS() {
   return new NextResponse(null, {

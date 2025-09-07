@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 
+const ORCH_URL = process.env.NEXT_PUBLIC_ORCHESTRATOR_URL || process.env.ORCHESTRATOR_URL || 'http://localhost:4000'
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -29,8 +31,10 @@ export async function GET(
       )
     }
 
-    // Simular verificação de status do WhatsApp
-    const status = session.is_active ? 'connected' : 'disconnected'
+    // Status via Evolution
+    const resp = await fetch(`${ORCH_URL}/evolution/instances/${encodeURIComponent(session.session_name)}/status`, { cache: 'no-store' })
+    const evo = resp.ok ? await resp.json() : null
+    const status = evo?.status?.connected ? 'connected' : (session.is_active ? 'connected' : 'disconnected')
     
     return NextResponse.json({
       status,
