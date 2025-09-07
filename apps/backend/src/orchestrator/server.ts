@@ -57,7 +57,8 @@ app.get('/sessions', async (_req, res) => {
   }
 });
 
-const PORT = Number(process.env.ORCHESTRATOR_PORT || 4000);
+// Bind to service PORT to satisfy Railway healthcheck
+const PORT = Number(process.env.PORT || process.env.ORCHESTRATOR_PORT || 4000);
 app.listen(PORT, () => {
   console.log(`✅ Orchestrator listening on http://localhost:${PORT}`);
 });

@@ -57,6 +57,10 @@ export default function AIPromptsPage() {
   }
 
   async function loadPrompts(): Promise<SessionPrompt[]> {
+    type PromptRow = SessionPrompt & {
+      whatsapp_sessions?: Pick<WhatsAppSession, 'session_name' | 'is_active'>
+    }
+
     const { data, error } = await supabase
       .from('session_prompts')
       .select(`
@@ -73,8 +77,14 @@ export default function AIPromptsPage() {
       return []
     }
 
-    return data.map(item => ({
-      ...item,
+    const rows = (data || []) as unknown as PromptRow[]
+    return rows.map((item: PromptRow) => ({
+      id: item.id,
+      session_id: item.session_id,
+      prompt_text: item.prompt_text,
+      is_active: item.is_active,
+      created_at: item.created_at,
+      updated_at: item.updated_at,
       session: item.whatsapp_sessions
     }))
   }
