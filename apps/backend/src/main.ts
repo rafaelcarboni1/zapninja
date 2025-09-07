@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import { MainLauncher } from './dashboard/main-launcher';
-import { startHealthServer } from './orchestrator/health-server';
 import './orchestrator/server';
 
 /**
@@ -11,8 +10,7 @@ import './orchestrator/server';
 
 async function main() {
   try {
-    // Start lightweight health server for Railway and orchestrator server
-    startHealthServer();
+    // Orchestrator já inicia e expõe /health; iniciar launcher principal
     await MainLauncher.start();
   } catch (error) {
     console.error('Erro fatal:', error);
