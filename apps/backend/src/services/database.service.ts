@@ -1,21 +1,100 @@
-import { supabaseAdmin } from '../config/supabase';
-import type {
-  WhatsAppSession,
-  WhatsAppUser,
-  Conversation,
-  Message,
-  UserContext,
-  AdminCommand,
-  SystemMetric,
-  LearningData
-} from '../config/supabase';
+import { query } from '../config/pg';
+
+// Tipos mínimos (migráveis). Para manter compatibilidade com o restante do código:
+export interface WhatsAppSession {
+  id: string;
+  session_name: string;
+  phone_number?: string;
+  is_active: boolean;
+  ai_config: Record<string, any>;
+  timing_config: Record<string, any>;
+  max_messages?: number;
+  custom_prompt?: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface WhatsAppUser {
+  id: string;
+  phone_number: string;
+  name?: string;
+  display_name?: string;
+  is_active?: boolean;
+  profile_data?: Record<string, any>;
+  preferences?: Record<string, any>;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Conversation {
+  id: string;
+  session_id: string;
+  user_id: string;
+  conversation_data?: Record<string, any>;
+  context_summary?: string;
+  last_interaction?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Message {
+  id: string;
+  conversation_id: string;
+  sender_type: 'user' | 'ai' | 'system';
+  content: string;
+  message_type: string;
+  metadata?: Record<string, any>;
+  created_at: string;
+}
+
+export interface UserContext {
+  id: string;
+  user_id: string;
+  session_id: string;
+  context_type: string;
+  context_data: Record<string, any>;
+  relevance_score: number;
+  expires_at?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AdminCommand {
+  id: string;
+  session_id: string;
+  session_name?: string;
+  command_name: string;
+  parameters: Record<string, any>;
+  executed_by?: string;
+  execution_result?: Record<string, any>;
+  created_at: string;
+}
+
+export interface SystemMetric {
+  id: string;
+  session_id: string;
+  metric_type: string;
+  metric_value: Record<string, any>;
+  recorded_at: string;
+}
+
+export interface LearningData {
+  id: string;
+  session_id: string;
+  user_id?: string;
+  interaction_type: string;
+  input_data: Record<string, any>;
+  output_data: Record<string, any>;
+  feedback_score?: number;
+  learning_tags?: string[];
+  created_at: string;
+}
 
 /**
  * Serviço principal para operações de banco de dados
  * Centraliza todas as operações CRUD para o sistema de IA com memória persistente
  */
 export class DatabaseService {
-  private supabase = supabaseAdmin;
 
   // ==================== WHATSAPP SESSIONS ====================
 
@@ -24,19 +103,16 @@ export class DatabaseService {
    */
   async createSession(sessionData: Omit<WhatsAppSession, 'id' | 'created_at' | 'updated_at'>): Promise<WhatsAppSession | null> {
     try {
-      const { data, error } = await this.supabase
-        .from('whatsapp_sessions')
-        .insert(sessionData)
-        .select()
-        .single();
-
-      if (error) {
-        console.error('❌ Erro ao criar sessão:', error);
-        return null;
-      }
-
-      console.log('✅ Sessão criada:', data.session_name);
-      return data;
+      const fields = Object.keys(sessionData);
+      const values = Object.values(sessionData);
+      const placeholders = fields.map((_, i) => `$${i + 1}`).join(', ');
+      const { rows } = await query<WhatsAppSession>(
+        `INSERT INTO whatsapp_sessions (${fields.join(', ')}) VALUES (${placeholders}) RETURNING *`,
+        values
+      );
+      const data = rows[0];
+      if (data) console.log('✅ Sessão criada:', data.session_name);
+      return data || null;
     } catch (error) {
       console.error('❌ Erro inesperado ao criar sessão:', error);
       return null;
@@ -48,18 +124,11 @@ export class DatabaseService {
    */
   async getSessionByName(sessionName: string): Promise<WhatsAppSession | null> {
     try {
-      const { data, error } = await this.supabase
-        .from('whatsapp_sessions')
-        .select('*')
-        .eq('session_name', sessionName)
-        .single();
-
-      if (error && error.code !== 'PGRST116') {
-        console.error('❌ Erro ao buscar sessão:', error);
-        return null;
-      }
-
-      return data || null;
+      const { rows } = await query<WhatsAppSession>(
+        `SELECT * FROM whatsapp_sessions WHERE session_name = $1 LIMIT 1`,
+        [sessionName]
+      );
+      return rows[0] || null;
     } catch (error) {
       console.error('❌ Erro inesperado ao buscar sessão:', error);
       return null;
@@ -71,18 +140,10 @@ export class DatabaseService {
    */
   async getActiveSessions(): Promise<WhatsAppSession[]> {
     try {
-      const { data, error } = await this.supabase
-        .from('whatsapp_sessions')
-        .select('*')
-        .eq('is_active', true)
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error('❌ Erro ao listar sessões ativas:', error);
-        return [];
-      }
-
-      return data || [];
+      const { rows } = await query<WhatsAppSession>(
+        `SELECT * FROM whatsapp_sessions WHERE is_active = true ORDER BY created_at DESC`
+      );
+      return rows;
     } catch (error) {
       console.error('❌ Erro inesperado ao listar sessões:', error);
       return [];
@@ -94,17 +155,10 @@ export class DatabaseService {
    */
   async getAllSessions(): Promise<WhatsAppSession[]> {
     try {
-      const { data, error } = await this.supabase
-        .from('whatsapp_sessions')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error('❌ Erro ao listar todas as sessões:', error);
-        return [];
-      }
-
-      return data || [];
+      const { rows } = await query<WhatsAppSession>(
+        `SELECT * FROM whatsapp_sessions ORDER BY created_at DESC`
+      );
+      return rows;
     } catch (error) {
       console.error('❌ Erro inesperado ao listar sessões:', error);
       return [];
@@ -116,20 +170,17 @@ export class DatabaseService {
    */
   async updateSession(sessionName: string, updates: Partial<WhatsAppSession>): Promise<WhatsAppSession | null> {
     try {
-      const { data, error } = await this.supabase
-        .from('whatsapp_sessions')
-        .update(updates)
-        .eq('session_name', sessionName)
-        .select()
-        .single();
-
-      if (error) {
-        console.error('❌ Erro ao atualizar sessão:', error);
-        return null;
-      }
-
-      console.log('✅ Sessão atualizada:', sessionName);
-      return data;
+      const fields = Object.keys(updates);
+      const setClause = fields.map((f, i) => `${f} = $${i + 1}`).join(', ');
+      const values = Object.values(updates);
+      values.push(sessionName);
+      const { rows } = await query<WhatsAppSession>(
+        `UPDATE whatsapp_sessions SET ${setClause} WHERE session_name = $${fields.length + 1} RETURNING *`,
+        values
+      );
+      const data = rows[0];
+      if (data) console.log('✅ Sessão atualizada:', sessionName);
+      return data || null;
     } catch (error) {
       console.error('❌ Erro inesperado ao atualizar sessão:', error);
       return null;
@@ -141,16 +192,7 @@ export class DatabaseService {
    */
   async deactivateSession(sessionName: string): Promise<boolean> {
     try {
-      const { error } = await this.supabase
-        .from('whatsapp_sessions')
-        .update({ is_active: false })
-        .eq('session_name', sessionName);
-
-      if (error) {
-        console.error('❌ Erro ao desativar sessão:', error);
-        return false;
-      }
-
+      await query(`UPDATE whatsapp_sessions SET is_active = false WHERE session_name = $1`, [sessionName]);
       console.log('✅ Sessão desativada:', sessionName);
       return true;
     } catch (error) {
@@ -164,19 +206,10 @@ export class DatabaseService {
    */
   async setSessionPrompt(sessionName: string, customPrompt: string): Promise<boolean> {
     try {
-      const { error } = await this.supabase
-        .from('whatsapp_sessions')
-        .update({ 
-          custom_prompt: customPrompt,
-          updated_at: new Date().toISOString() 
-        })
-        .eq('session_name', sessionName);
-
-      if (error) {
-        console.error('❌ Erro ao definir prompt da sessão:', error);
-        return false;
-      }
-
+      await query(
+        `UPDATE whatsapp_sessions SET custom_prompt = $1, updated_at = NOW() WHERE session_name = $2`,
+        [customPrompt, sessionName]
+      );
       console.log('✅ Prompt definido para sessão:', sessionName);
       return true;
     } catch (error) {
@@ -190,18 +223,11 @@ export class DatabaseService {
    */
   async getSessionPrompt(sessionName: string): Promise<string | null> {
     try {
-      const { data, error } = await this.supabase
-        .from('whatsapp_sessions')
-        .select('custom_prompt')
-        .eq('session_name', sessionName)
-        .single();
-
-      if (error) {
-        console.error('❌ Erro ao obter prompt da sessão:', error);
-        return null;
-      }
-
-      return data?.custom_prompt || null;
+      const { rows } = await query<{ custom_prompt: string }>(
+        `SELECT custom_prompt FROM whatsapp_sessions WHERE session_name = $1 LIMIT 1`,
+        [sessionName]
+      );
+      return rows[0]?.custom_prompt || null;
     } catch (error) {
       console.error('❌ Erro inesperado ao obter prompt:', error);
       return null;
@@ -215,21 +241,17 @@ export class DatabaseService {
    */
   async upsertUser(userData: Omit<WhatsAppUser, 'id' | 'created_at' | 'updated_at'>): Promise<WhatsAppUser | null> {
     try {
-      const { data, error } = await this.supabase
-        .from('whatsapp_users')
-        .upsert(userData, {
-          onConflict: 'phone_number',
-          ignoreDuplicates: false
-        })
-        .select()
-        .single();
-
-      if (error) {
-        console.error('❌ Erro ao criar/atualizar usuário:', error);
-        return null;
-      }
-
-      return data;
+      const fields = Object.keys(userData);
+      const values = Object.values(userData);
+      const setClause = fields.map((f, i) => `${f} = EXCLUDED.${f}`).join(', ');
+      const placeholders = fields.map((_, i) => `$${i + 1}`).join(', ');
+      const { rows } = await query<WhatsAppUser>(
+        `INSERT INTO whatsapp_users (${fields.join(', ')}) VALUES (${placeholders})
+         ON CONFLICT (phone_number) DO UPDATE SET ${setClause}
+         RETURNING *`,
+        values
+      );
+      return rows[0] || null;
     } catch (error) {
       console.error('❌ Erro inesperado ao criar/atualizar usuário:', error);
       return null;
@@ -241,18 +263,11 @@ export class DatabaseService {
    */
   async getUserByPhone(phoneNumber: string, sessionName: string): Promise<WhatsAppUser | null> {
     try {
-      const { data, error } = await this.supabase
-        .from('whatsapp_users')
-        .select('*')
-        .eq('phone_number', phoneNumber)
-        .single();
-
-      if (error && error.code !== 'PGRST116') {
-        console.error('❌ Erro ao buscar usuário:', error);
-        return null;
-      }
-
-      return data || null;
+      const { rows } = await query<WhatsAppUser>(
+        `SELECT * FROM whatsapp_users WHERE phone_number = $1 LIMIT 1`,
+        [phoneNumber]
+      );
+      return rows[0] || null;
     } catch (error) {
       console.error('❌ Erro inesperado ao buscar usuário:', error);
       return null;
@@ -264,50 +279,17 @@ export class DatabaseService {
    */
   async getUsersBySession(sessionName: string, limit: number = 50): Promise<WhatsAppUser[]> {
     try {
-      // Primeiro buscar a sessão pelo nome
-      const { data: session, error: sessionError } = await this.supabase
-        .from('whatsapp_sessions')
-        .select('id')
-        .eq('session_name', sessionName)
-        .single();
-
-      if (sessionError || !session) {
-        console.error('❌ Erro ao buscar sessão:', sessionError);
-        return [];
-      }
-
-      // Buscar conversas da sessão para obter user_ids únicos
-      const { data: conversations, error: convError } = await this.supabase
-        .from('conversations')
-        .select('user_id')
-        .eq('session_id', session.id)
-        .order('created_at', { ascending: false });
-
-      if (convError) {
-        console.error('❌ Erro ao buscar conversas da sessão:', convError);
-        return [];
-      }
-
-      if (!conversations || conversations.length === 0) {
-        return [];
-      }
-
-      // Buscar usuários únicos baseado nos user_ids das conversas
-      const userIds = [...new Set(conversations.map(c => c.user_id))];
-      
-      const { data, error } = await this.supabase
-        .from('whatsapp_users')
-        .select('*')
-        .in('id', userIds)
-        .order('updated_at', { ascending: false })
-        .limit(limit);
-
-      if (error) {
-        console.error('❌ Erro ao listar usuários:', error);
-        return [];
-      }
-
-      return data || [];
+      const { rows } = await query<WhatsAppUser>(
+        `SELECT wu.* FROM whatsapp_users wu
+         JOIN conversations c ON c.user_id = wu.id
+         JOIN whatsapp_sessions s ON s.id = c.session_id
+         WHERE s.session_name = $1
+         GROUP BY wu.id
+         ORDER BY wu.updated_at DESC
+         LIMIT $2`,
+        [sessionName, limit]
+      );
+      return rows;
     } catch (error) {
       console.error('❌ Erro inesperado ao listar usuários:', error);
       return [];
@@ -321,18 +303,14 @@ export class DatabaseService {
    */
   async createConversation(conversationData: Omit<Conversation, 'id' | 'created_at' | 'updated_at'>): Promise<Conversation | null> {
     try {
-      const { data, error } = await this.supabase
-        .from('conversations')
-        .insert(conversationData)
-        .select()
-        .single();
-
-      if (error) {
-        console.error('❌ Erro ao criar conversa:', error);
-        return null;
-      }
-
-      return data;
+      const fields = Object.keys(conversationData);
+      const values = Object.values(conversationData);
+      const placeholders = fields.map((_, i) => `$${i + 1}`).join(', ');
+      const { rows } = await query<Conversation>(
+        `INSERT INTO conversations (${fields.join(', ')}) VALUES (${placeholders}) RETURNING *`,
+        values
+      );
+      return rows[0] || null;
     } catch (error) {
       console.error('❌ Erro inesperado ao criar conversa:', error);
       return null;
@@ -344,32 +322,16 @@ export class DatabaseService {
    */
   async getActiveConversation(phoneNumber: string, sessionName: string): Promise<Conversation | null> {
     try {
-      // Primeiro, buscar o user_id
-      const user = await this.getUserByPhone(phoneNumber, sessionName);
-      if (!user) {
-        return null;
-      }
-
-      // Buscar o session_id
-      const session = await this.getSessionByName(sessionName);
-      if (!session) {
-        return null;
-      }
-
-      const { data, error } = await this.supabase
-        .from('conversations')
-        .select('*')
-        .eq('user_id', user.id)
-        .eq('session_id', session.id)
-        .order('created_at', { ascending: false })
-        .limit(1);
-
-      if (error) {
-        console.error('❌ Erro ao buscar conversa ativa:', error);
-        return null;
-      }
-
-      return (data && data.length > 0) ? data[0] : null;
+      const { rows } = await query<Conversation>(
+        `SELECT c.* FROM conversations c
+         JOIN whatsapp_users u ON u.id = c.user_id
+         JOIN whatsapp_sessions s ON s.id = c.session_id
+         WHERE u.phone_number = $1 AND s.session_name = $2
+         ORDER BY c.created_at DESC
+         LIMIT 1`,
+        [phoneNumber, sessionName]
+      );
+      return rows[0] || null;
     } catch (error) {
       console.error('❌ Erro inesperado ao buscar conversa:', error);
       return null;
@@ -381,18 +343,7 @@ export class DatabaseService {
    */
   async endConversation(conversationId: string): Promise<boolean> {
     try {
-      const { error } = await this.supabase
-        .from('conversations')
-        .update({ 
-          last_interaction: new Date().toISOString()
-        })
-        .eq('id', conversationId);
-
-      if (error) {
-        console.error('❌ Erro ao finalizar conversa:', error);
-        return false;
-      }
-
+      await query(`UPDATE conversations SET last_interaction = NOW() WHERE id = $1`, [conversationId]);
       return true;
     } catch (error) {
       console.error('❌ Erro inesperado ao finalizar conversa:', error);
@@ -405,16 +356,7 @@ export class DatabaseService {
    */
   async updateConversationInteraction(conversationId: string): Promise<boolean> {
     try {
-      const { error } = await this.supabase
-        .from('conversations')
-        .update({ last_interaction: new Date().toISOString() })
-        .eq('id', conversationId);
-
-      if (error) {
-        console.error('❌ Erro ao atualizar interação da conversa:', error);
-        return false;
-      }
-
+      await query(`UPDATE conversations SET last_interaction = NOW() WHERE id = $1`, [conversationId]);
       return true;
     } catch (error) {
       console.error('❌ Erro inesperado ao atualizar interação:', error);
@@ -429,18 +371,14 @@ export class DatabaseService {
    */
   async saveMessage(messageData: Omit<Message, 'id' | 'created_at'>): Promise<Message | null> {
     try {
-      const { data, error } = await this.supabase
-        .from('messages')
-        .insert(messageData)
-        .select()
-        .single();
-
-      if (error) {
-        console.error('❌ Erro ao salvar mensagem:', error);
-        return null;
-      }
-
-      return data;
+      const fields = Object.keys(messageData);
+      const values = Object.values(messageData);
+      const placeholders = fields.map((_, i) => `$${i + 1}`).join(', ');
+      const { rows } = await query<Message>(
+        `INSERT INTO messages (${fields.join(', ')}) VALUES (${placeholders}) RETURNING *`,
+        values
+      );
+      return rows[0] || null;
     } catch (error) {
       console.error('❌ Erro inesperado ao salvar mensagem:', error);
       return null;
@@ -452,19 +390,11 @@ export class DatabaseService {
    */
   async getConversationMessages(conversationId: string, limit: number = 50): Promise<Message[]> {
     try {
-      const { data, error } = await this.supabase
-        .from('messages')
-        .select('*')
-        .eq('conversation_id', conversationId)
-        .order('created_at', { ascending: true })
-        .limit(limit);
-
-      if (error) {
-        console.error('❌ Erro ao buscar mensagens:', error);
-        return [];
-      }
-
-      return data || [];
+      const { rows } = await query<Message>(
+        `SELECT * FROM messages WHERE conversation_id = $1 ORDER BY created_at ASC LIMIT $2`,
+        [conversationId, limit]
+      );
+      return rows;
     } catch (error) {
       console.error('❌ Erro inesperado ao buscar mensagens:', error);
       return [];
@@ -476,45 +406,17 @@ export class DatabaseService {
    */
   async getRecentUserMessages(phoneNumber: string, sessionName: string, limit: number = 20): Promise<Message[]> {
     try {
-      // Primeiro, busca o usuário e a sessão
-      const { data: user } = await this.supabase
-        .from('whatsapp_users')
-        .select('id')
-        .eq('phone_number', phoneNumber)
-        .single();
-
-      const { data: session } = await this.supabase
-        .from('whatsapp_sessions')
-        .select('id')
-        .eq('session_name', sessionName)
-        .single();
-
-      if (!user || !session) {
-        return [];
-      }
-
-      // Busca as mensagens através da conversa
-      const { data, error } = await this.supabase
-        .from('messages')
-        .select(`
-          *,
-          conversations!inner(
-            id,
-            user_id,
-            session_id
-          )
-        `)
-        .eq('conversations.user_id', user.id)
-        .eq('conversations.session_id', session.id)
-        .order('created_at', { ascending: false })
-        .limit(limit);
-
-      if (error) {
-        console.error('❌ Erro ao buscar histórico de mensagens:', error);
-        return [];
-      }
-
-      return data || [];
+      const { rows } = await query<Message>(
+        `SELECT m.* FROM messages m
+         JOIN conversations c ON c.id = m.conversation_id
+         JOIN whatsapp_users u ON u.id = c.user_id
+         JOIN whatsapp_sessions s ON s.id = c.session_id
+         WHERE u.phone_number = $1 AND s.session_name = $2
+         ORDER BY m.created_at DESC
+         LIMIT $3`,
+        [phoneNumber, sessionName, limit]
+      );
+      return rows;
     } catch (error) {
       console.error('❌ Erro inesperado ao buscar histórico:', error);
       return [];
@@ -528,19 +430,11 @@ export class DatabaseService {
    */
   async getRecentMessages(conversationId: string, limit: number = 20): Promise<Message[]> {
     try {
-      const { data, error } = await this.supabase
-        .from('messages')
-        .select('*')
-        .eq('conversation_id', conversationId)
-        .order('created_at', { ascending: false })
-        .limit(limit);
-
-      if (error) {
-        console.error('❌ Erro ao buscar mensagens recentes:', error);
-        return [];
-      }
-
-      return data || [];
+      const { rows } = await query<Message>(
+        `SELECT * FROM messages WHERE conversation_id = $1 ORDER BY created_at DESC LIMIT $2`,
+        [conversationId, limit]
+      );
+      return rows;
     } catch (error) {
       console.error('❌ Erro inesperado ao buscar mensagens recentes:', error);
       return [];
@@ -552,26 +446,15 @@ export class DatabaseService {
    */
   async getConversationHistory(phoneNumber: string, sessionName: string, limit: number = 10): Promise<Conversation[]> {
     try {
-      // Primeiro buscar o usuário
-      const user = await this.getUserByPhone(phoneNumber, sessionName);
-      if (!user) {
-        console.error('❌ Usuário não encontrado para buscar histórico');
-        return [];
-      }
-
-      const { data, error } = await this.supabase
-        .from('conversations')
-        .select('*')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false })
-        .limit(limit);
-
-      if (error) {
-        console.error('❌ Erro ao buscar histórico de conversas:', error);
-        return [];
-      }
-
-      return data || [];
+      const { rows } = await query<Conversation>(
+        `SELECT c.* FROM conversations c
+         JOIN whatsapp_users u ON u.id = c.user_id
+         WHERE u.phone_number = $1
+         ORDER BY c.created_at DESC
+         LIMIT $2`,
+        [phoneNumber, limit]
+      );
+      return rows;
     } catch (error) {
       console.error('❌ Erro inesperado ao buscar histórico de conversas:', error);
       return [];
@@ -583,47 +466,25 @@ export class DatabaseService {
    */
   async upsertUserContext(contextData: Omit<UserContext, 'id' | 'created_at' | 'updated_at'>): Promise<UserContext | null> {
     try {
-      // Primeiro, tenta buscar um registro existente
-      const { data: existing } = await this.supabase
-        .from('user_context')
-        .select('*')
-        .eq('user_id', contextData.user_id)
-        .eq('session_id', contextData.session_id)
-        .eq('context_type', contextData.context_type)
-        .single();
-
-      if (existing) {
-        // Atualiza o registro existente
-        const { data, error } = await this.supabase
-          .from('user_context')
-          .update({
-            context_data: contextData.context_data,
-            relevance_score: contextData.relevance_score,
-            expires_at: contextData.expires_at,
-            updated_at: new Date().toISOString()
-          })
-          .eq('id', existing.id)
-          .select()
-          .single();
-
-        if (error) {
-          console.error('❌ Erro ao atualizar contexto:', error);
-          return null;
-        }
-        return data;
+      const { rows: existing } = await query<UserContext>(
+        `SELECT * FROM user_context WHERE user_id = $1 AND session_id = $2 AND context_type = $3 LIMIT 1`,
+        [contextData.user_id, contextData.session_id, contextData.context_type]
+      );
+      if (existing[0]) {
+        const { rows } = await query<UserContext>(
+          `UPDATE user_context SET context_data = $1, relevance_score = $2, expires_at = $3, updated_at = NOW() WHERE id = $4 RETURNING *`,
+          [contextData.context_data, contextData.relevance_score, contextData.expires_at || null, existing[0].id]
+        );
+        return rows[0] || null;
       } else {
-        // Cria um novo registro
-        const { data, error } = await this.supabase
-          .from('user_context')
-          .insert(contextData)
-          .select()
-          .single();
-
-        if (error) {
-          console.error('❌ Erro ao inserir contexto:', error);
-          return null;
-        }
-        return data;
+        const fields = Object.keys(contextData);
+        const values = Object.values(contextData);
+        const placeholders = fields.map((_, i) => `$${i + 1}`).join(', ');
+        const { rows } = await query<UserContext>(
+          `INSERT INTO user_context (${fields.join(', ')}) VALUES (${placeholders}) RETURNING *`,
+          values
+        );
+        return rows[0] || null;
       }
     } catch (error) {
       console.error('❌ Erro inesperado ao salvar contexto:', error);
@@ -636,27 +497,15 @@ export class DatabaseService {
    */
   async getUserContext(phoneNumber: string, sessionName: string): Promise<UserContext | null> {
     try {
-      // Primeiro buscar o user_id e session_id
-      const user = await this.getUserByPhone(phoneNumber, sessionName);
-      const session = await this.getSessionByName(sessionName);
-      
-      if (!user || !session) {
-        return null;
-      }
-
-      const { data, error } = await this.supabase
-        .from('user_context')
-        .select('*')
-        .eq('user_id', user.id)
-        .eq('session_id', session.id)
-        .single();
-
-      if (error && error.code !== 'PGRST116') {
-        console.error('❌ Erro ao buscar contexto:', error);
-        return null;
-      }
-
-      return data || null;
+      const { rows } = await query<UserContext>(
+        `SELECT uc.* FROM user_context uc
+         JOIN whatsapp_users u ON u.id = uc.user_id
+         JOIN whatsapp_sessions s ON s.id = uc.session_id
+         WHERE u.phone_number = $1 AND s.session_name = $2
+         LIMIT 1`,
+        [phoneNumber, sessionName]
+      );
+      return rows[0] || null;
     } catch (error) {
       console.error('❌ Erro inesperado ao buscar contexto:', error);
       return null;
@@ -670,18 +519,14 @@ export class DatabaseService {
    */
   async logAdminCommand(commandData: Omit<AdminCommand, 'id' | 'created_at'>): Promise<AdminCommand | null> {
     try {
-      const { data, error } = await this.supabase
-        .from('admin_commands')
-        .insert(commandData)
-        .select()
-        .single();
-
-      if (error) {
-        console.error('❌ Erro ao registrar comando:', error);
-        return null;
-      }
-
-      return data;
+      const fields = Object.keys(commandData);
+      const values = Object.values(commandData);
+      const placeholders = fields.map((_, i) => `$${i + 1}`).join(', ');
+      const { rows } = await query<AdminCommand>(
+        `INSERT INTO admin_commands (${fields.join(', ')}) VALUES (${placeholders}) RETURNING *`,
+        values
+      );
+      return rows[0] || null;
     } catch (error) {
       console.error('❌ Erro inesperado ao registrar comando:', error);
       return null;
@@ -693,24 +538,18 @@ export class DatabaseService {
    */
   async getAdminCommandHistory(sessionName?: string, limit: number = 100): Promise<AdminCommand[]> {
     try {
-      let query = this.supabase
-        .from('admin_commands')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .limit(limit);
-
       if (sessionName) {
-        query = query.eq('session_name', sessionName);
+        const { rows } = await query<AdminCommand>(
+          `SELECT * FROM admin_commands WHERE session_name = $1 ORDER BY created_at DESC LIMIT $2`,
+          [sessionName, limit]
+        );
+        return rows;
       }
-
-      const { data, error } = await query;
-
-      if (error) {
-        console.error('❌ Erro ao buscar histórico de comandos:', error);
-        return [];
-      }
-
-      return data || [];
+      const { rows } = await query<AdminCommand>(
+        `SELECT * FROM admin_commands ORDER BY created_at DESC LIMIT $1`,
+        [limit]
+      );
+      return rows;
     } catch (error) {
       console.error('❌ Erro inesperado ao buscar histórico:', error);
       return [];
@@ -722,32 +561,16 @@ export class DatabaseService {
    */
   async getCommandUsageStats(sessionName?: string, days: number = 30): Promise<Record<string, number>> {
     try {
-      const cutoffDate = new Date();
-      cutoffDate.setDate(cutoffDate.getDate() - days);
-
-      let query = this.supabase
-        .from('admin_commands')
-        .select('command_name')
-        .gte('created_at', cutoffDate.toISOString());
-
-      if (sessionName) {
-        query = query.eq('session_name', sessionName);
-      }
-
-      const { data, error } = await query;
-
-      if (error) {
-        console.error('❌ Erro ao buscar estatísticas:', error);
-        return {};
-      }
-
-      // Contar ocorrências de cada comando
+      const { rows } = await query<{ command_name: string; count: string }>(
+        `SELECT command_name, COUNT(*)::text as count
+         FROM admin_commands
+         WHERE created_at >= NOW() - INTERVAL '${days} days'
+         ${sessionName ? 'AND session_name = $1' : ''}
+         GROUP BY command_name`,
+        sessionName ? [sessionName] : []
+      );
       const stats: Record<string, number> = {};
-      data?.forEach(record => {
-        const command = record.command_name;
-        stats[command] = (stats[command] || 0) + 1;
-      });
-
+      rows.forEach(r => { stats[r.command_name] = parseInt(r.count, 10) || 0; });
       return stats;
     } catch (error) {
       console.error('❌ Erro inesperado ao buscar estatísticas:', error);
@@ -762,18 +585,14 @@ export class DatabaseService {
    */
   async recordMetric(metricData: Omit<SystemMetric, 'id' | 'created_at'>): Promise<SystemMetric | null> {
     try {
-      const { data, error } = await this.supabase
-        .from('system_metrics')
-        .insert(metricData)
-        .select()
-        .single();
-
-      if (error) {
-        console.error('❌ Erro ao registrar métrica:', error);
-        return null;
-      }
-
-      return data;
+      const fields = Object.keys(metricData);
+      const values = Object.values(metricData);
+      const placeholders = fields.map((_, i) => `$${i + 1}`).join(', ');
+      const { rows } = await query<SystemMetric>(
+        `INSERT INTO system_metrics (${fields.join(', ')}) VALUES (${placeholders}) RETURNING *`,
+        values
+      );
+      return rows[0] || null;
     } catch (error) {
       console.error('❌ Erro inesperado ao registrar métrica:', error);
       return null;
@@ -785,34 +604,21 @@ export class DatabaseService {
    */
   async getMetrics(metricType: string, sessionName?: string, hours: number = 24): Promise<SystemMetric[]> {
     try {
-      const since = new Date(Date.now() - hours * 60 * 60 * 1000).toISOString();
-      
-      let query = this.supabase
-        .from('system_metrics')
-        .select('*')
-        .eq('metric_type', metricType)
-        .gte('recorded_at', since)
-        .order('recorded_at', { ascending: false });
-
       if (sessionName) {
-        // Buscar session_id pelo session_name
-        const session = await this.getSessionByName(sessionName);
-        if (session) {
-          query = query.eq('session_id', session.id);
-        } else {
-          // Se sessão não encontrada, retornar array vazio
-          return [];
-        }
+        const { rows } = await query<SystemMetric>(
+          `SELECT sm.* FROM system_metrics sm
+           JOIN whatsapp_sessions s ON s.id = sm.session_id
+           WHERE sm.metric_type = $1 AND sm.recorded_at >= NOW() - INTERVAL '${hours} hours' AND s.session_name = $2
+           ORDER BY sm.recorded_at DESC`,
+          [metricType, sessionName]
+        );
+        return rows;
       }
-
-      const { data, error } = await query;
-
-      if (error) {
-        console.error('❌ Erro ao buscar métricas:', error);
-        return [];
-      }
-
-      return data || [];
+      const { rows } = await query<SystemMetric>(
+        `SELECT * FROM system_metrics WHERE metric_type = $1 AND recorded_at >= NOW() - INTERVAL '${hours} hours' ORDER BY recorded_at DESC`,
+        [metricType]
+      );
+      return rows;
     } catch (error) {
       console.error('❌ Erro inesperado ao buscar métricas:', error);
       return [];
@@ -826,18 +632,14 @@ export class DatabaseService {
    */
   async saveLearningData(learningData: Omit<LearningData, 'id' | 'created_at'>): Promise<LearningData | null> {
     try {
-      const { data, error } = await this.supabase
-        .from('learning_data')
-        .insert(learningData)
-        .select()
-        .single();
-
-      if (error) {
-        console.error('❌ Erro ao salvar dados de aprendizado:', error);
-        return null;
-      }
-
-      return data;
+      const fields = Object.keys(learningData);
+      const values = Object.values(learningData);
+      const placeholders = fields.map((_, i) => `$${i + 1}`).join(', ');
+      const { rows } = await query<LearningData>(
+        `INSERT INTO learning_data (${fields.join(', ')}) VALUES (${placeholders}) RETURNING *`,
+        values
+      );
+      return rows[0] || null;
     } catch (error) {
       console.error('❌ Erro inesperado ao salvar aprendizado:', error);
       return null;
@@ -849,24 +651,18 @@ export class DatabaseService {
    */
   async getLearningPatterns(sessionName: string, patternType?: string): Promise<LearningData[]> {
     try {
-      let query = this.supabase
-        .from('learning_data')
-        .select('*')
-        .eq('session_name', sessionName)
-        .order('created_at', { ascending: false });
-
       if (patternType) {
-        query = query.eq('pattern_type', patternType);
+        const { rows } = await query<LearningData>(
+          `SELECT * FROM learning_data WHERE session_name = $1 AND pattern_type = $2 ORDER BY created_at DESC`,
+          [sessionName, patternType]
+        );
+        return rows;
       }
-
-      const { data, error } = await query;
-
-      if (error) {
-        console.error('❌ Erro ao buscar padrões:', error);
-        return [];
-      }
-
-      return data || [];
+      const { rows } = await query<LearningData>(
+        `SELECT * FROM learning_data WHERE session_name = $1 ORDER BY created_at DESC`,
+        [sessionName]
+      );
+      return rows;
     } catch (error) {
       console.error('❌ Erro inesperado ao buscar padrões:', error);
       return [];
@@ -880,37 +676,10 @@ export class DatabaseService {
    */
   async listTables(): Promise<Array<{ table_name: string }>> {
     try {
-      // Lista das tabelas conhecidas do projeto
-      const knownTables = [
-        'whatsapp_sessions',
-        'whatsapp_users', 
-        'conversations',
-        'messages',
-        'user_context',
-        'admin_commands',
-        'system_metrics',
-        'learning_data'
-      ];
-
-      // Verifica quais tabelas existem testando uma query simples
-      const existingTables: Array<{ table_name: string }> = [];
-      
-      for (const tableName of knownTables) {
-        try {
-          const { error } = await this.supabase
-            .from(tableName)
-            .select('*')
-            .limit(1);
-          
-          if (!error) {
-            existingTables.push({ table_name: tableName });
-          }
-        } catch {
-          // Tabela não existe, continua
-        }
-      }
-
-      return existingTables;
+      const { rows } = await query<{ table_name: string }>(
+        `SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'`
+      );
+      return rows;
     } catch (error) {
       console.error('❌ Erro inesperado ao listar tabelas:', error);
       return [];
@@ -929,16 +698,7 @@ export class DatabaseService {
    */
   async deleteSession(sessionName: string): Promise<boolean> {
     try {
-      const { error } = await this.supabase
-        .from('whatsapp_sessions')
-        .delete()
-        .eq('session_name', sessionName);
-
-      if (error) {
-        console.error('❌ Erro ao deletar sessão:', error);
-        return false;
-      }
-
+      await query(`DELETE FROM whatsapp_sessions WHERE session_name = $1`, [sessionName]);
       console.log('✅ Sessão deletada:', sessionName);
       return true;
     } catch (error) {
@@ -967,21 +727,16 @@ export class DatabaseService {
       if (contextData.context_data !== undefined) validFields.context_data = contextData.context_data;
       if (contextData.relevance_score !== undefined) validFields.relevance_score = contextData.relevance_score;
       if (contextData.expires_at !== undefined) validFields.expires_at = contextData.expires_at;
-
-      const { data, error } = await this.supabase
-        .from('user_context')
-        .update(validFields)
-        .eq('user_id', user.id)
-        .eq('session_id', session.id)
-        .select()
-        .single();
-
-      if (error) {
-        console.error('❌ Erro ao atualizar contexto do usuário:', error);
-        return null;
-      }
-
-      return data;
+      const fields = Object.keys(validFields);
+      if (fields.length === 0) return await this.getUserContext(phoneNumber, sessionName);
+      const setClause = fields.map((f, i) => `${f} = $${i + 1}`).join(', ');
+      const values = Object.values(validFields);
+      values.push(user.id, session.id);
+      const { rows } = await query<UserContext>(
+        `UPDATE user_context SET ${setClause} WHERE user_id = $${fields.length + 1} AND session_id = $${fields.length + 2} RETURNING *`,
+        values
+      );
+      return rows[0] || null;
     } catch (error) {
       console.error('❌ Erro inesperado ao atualizar contexto:', error);
       return null;
@@ -993,16 +748,7 @@ export class DatabaseService {
    */
   async testConnection(): Promise<boolean> {
     try {
-      const { data, error } = await this.supabase
-        .from('whatsapp_sessions')
-        .select('count')
-        .limit(1);
-
-      if (error) {
-        console.error('❌ Erro na conexão:', error);
-        return false;
-      }
-
+      await query('SELECT 1');
       console.log('✅ Conexão com banco de dados OK');
       return true;
     } catch (error) {
@@ -1029,81 +775,49 @@ export class DatabaseService {
     dailyActivity: Array<{ date: string; message_count: number; user_count: number }>;
   } | null> {
     try {
-      // Buscar total de usuários
-      const { data: usersData, error: usersError } = await this.supabase
-        .from('whatsapp_users')
-        .select('id')
-        .eq('session_name', sessionName);
-
-      if (usersError) throw usersError;
-
-      // Buscar usuários ativos (últimas 24h)
-      const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      
-      const { data: activeUsersData, error: activeUsersError } = await this.supabase
-        .from('whatsapp_users')
-        .select('id')
-        .eq('session_name', sessionName)
-        .gte('last_interaction', yesterday.toISOString());
-
-      if (activeUsersError) throw activeUsersError;
-
-      // Buscar total de conversas
-      const { data: conversationsData, error: conversationsError } = await this.supabase
-        .from('conversations')
-        .select('id, is_active')
-        .eq('session_name', sessionName);
-
-      if (conversationsError) throw conversationsError;
-
-      // Buscar total de mensagens
-      const { data: messagesData, error: messagesError } = await this.supabase
-        .from('messages')
-        .select('id, created_at')
-        .eq('session_name', sessionName);
-
-      if (messagesError) throw messagesError;
-
-      // Calcular mensagens de hoje
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const messagesToday = messagesData?.filter(msg => 
-        new Date(msg.created_at) >= today
-      ).length || 0;
-
-      // Calcular mensagens desta semana
-      const weekAgo = new Date();
-      weekAgo.setDate(weekAgo.getDate() - 7);
-      const messagesThisWeek = messagesData?.filter(msg => 
-        new Date(msg.created_at) >= weekAgo
-      ).length || 0;
-
-      // Buscar top usuários (mais ativos)
-      const { data: topUsersData, error: topUsersError } = await this.supabase
-        .rpc('get_top_users_by_session', {
-          p_session_name: sessionName,
-          p_limit: 5
-        });
-
-      // Buscar atividade diária (últimos 7 dias)
-      const { data: dailyActivityData, error: dailyActivityError } = await this.supabase
-        .rpc('get_daily_activity_by_session', {
-          p_session_name: sessionName,
-          p_days: 7
-        });
+      const { rows: totalUsersRows } = await query<{ count: string }>(
+        `SELECT COUNT(*)::text as count FROM whatsapp_users u
+         JOIN conversations c ON c.user_id = u.id
+         JOIN whatsapp_sessions s ON s.id = c.session_id
+         WHERE s.session_name = $1`, [sessionName]
+      );
+      const { rows: activeUsersRows } = await query<{ count: string }>(
+        `SELECT COUNT(DISTINCT u.id)::text as count FROM whatsapp_users u
+         JOIN conversations c ON c.user_id = u.id
+         JOIN whatsapp_sessions s ON s.id = c.session_id
+         WHERE s.session_name = $1 AND u.updated_at >= NOW() - INTERVAL '24 hours'`, [sessionName]
+      );
+      const { rows: convRows } = await query<{ total: string; active: string }>(
+        `SELECT COUNT(*)::text as total,
+                COUNT(*) FILTER (WHERE is_active = true)::text as active
+         FROM conversations c
+         JOIN whatsapp_sessions s ON s.id = c.session_id
+         WHERE s.session_name = $1`, [sessionName]
+      );
+      const { rows: msgRowsToday } = await query<{ count: string }>(
+        `SELECT COUNT(*)::text as count FROM messages m
+         JOIN conversations c ON c.id = m.conversation_id
+         JOIN whatsapp_sessions s ON s.id = c.session_id
+         WHERE s.session_name = $1 AND m.created_at >= date_trunc('day', NOW())`, [sessionName]
+      );
+      const { rows: msgRowsWeek } = await query<{ count: string }>(
+        `SELECT COUNT(*)::text as count FROM messages m
+         JOIN conversations c ON c.id = m.conversation_id
+         JOIN whatsapp_sessions s ON s.id = c.session_id
+         WHERE s.session_name = $1 AND m.created_at >= NOW() - INTERVAL '7 days'`, [sessionName]
+      );
 
       return {
-        totalUsers: usersData?.length || 0,
-        activeUsers: activeUsersData?.length || 0,
-        totalConversations: conversationsData?.length || 0,
-        activeConversations: conversationsData?.filter(c => c.is_active).length || 0,
-        totalMessages: messagesData?.length || 0,
-        messagesToday,
-        messagesThisWeek,
-        averageResponseTime: 0, // Implementar cálculo se necessário
-        topUsers: topUsersData || [],
-        dailyActivity: dailyActivityData || []
+        totalUsers: parseInt(totalUsersRows[0]?.count || '0', 10),
+        activeUsers: parseInt(activeUsersRows[0]?.count || '0', 10),
+        totalConversations: parseInt(convRows[0]?.total || '0', 10),
+        activeConversations: parseInt(convRows[0]?.active || '0', 10),
+        totalMessages: 0,
+        messagesToday: parseInt(msgRowsToday[0]?.count || '0', 10),
+        messagesThisWeek: parseInt(msgRowsWeek[0]?.count || '0', 10),
+        averageResponseTime: 0,
+        topUsers: [],
+        dailyActivity: []
       };
     } catch (error) {
       console.error('❌ Erro ao buscar estatísticas da sessão:', error);
@@ -1121,28 +835,19 @@ export class DatabaseService {
     averagePerDay: number;
   } | null> {
     try {
-      const startDate = new Date();
-      startDate.setDate(startDate.getDate() - days);
-
-      const { data, error } = await this.supabase
-        .from('messages')
-        .select('message_type')
-        .eq('session_name', sessionName)
-        .gte('created_at', startDate.toISOString());
-
-      if (error) throw error;
-
-      const totalMessages = data?.length || 0;
-      const userMessages = data?.filter(m => m.message_type === 'user').length || 0;
-      const botMessages = data?.filter(m => m.message_type === 'bot').length || 0;
-      const averagePerDay = totalMessages / days;
-
-      return {
-        totalMessages,
-        userMessages,
-        botMessages,
-        averagePerDay: Math.round(averagePerDay * 100) / 100
-      };
+      const { rows } = await query<{ message_type: string; count: string }>(
+        `SELECT m.message_type, COUNT(*)::text as count FROM messages m
+         JOIN conversations c ON c.id = m.conversation_id
+         JOIN whatsapp_sessions s ON s.id = c.session_id
+         WHERE s.session_name = $1 AND m.created_at >= NOW() - INTERVAL '${days} days'
+         GROUP BY m.message_type`,
+        [sessionName]
+      );
+      const totalMessages = rows.reduce((acc, r) => acc + parseInt(r.count, 10), 0);
+      const userMessages = parseInt(rows.find(r => r.message_type === 'user')?.count || '0', 10);
+      const botMessages = parseInt(rows.find(r => r.message_type === 'bot')?.count || '0', 10);
+      const averagePerDay = Math.round((totalMessages / days) * 100) / 100;
+      return { totalMessages, userMessages, botMessages, averagePerDay };
     } catch (error) {
       console.error('❌ Erro ao buscar estatísticas de mensagens:', error);
       return null;
@@ -1160,14 +865,29 @@ export class DatabaseService {
     total_conversations: number;
   }> | null> {
     try {
-      const { data, error } = await this.supabase
-        .rpc('get_detailed_top_users', {
-          p_session_name: sessionName,
-          p_limit: limit
-        });
-
-      if (error) throw error;
-      return data || [];
+      const { rows } = await query<{ phone_number: string; display_name: string; message_count: string; last_interaction: string; total_conversations: string }>(
+        `SELECT u.phone_number,
+                COALESCE(u.display_name, u.name, '') as display_name,
+                COUNT(m.id)::text as message_count,
+                MAX(m.created_at)::text as last_interaction,
+                COUNT(DISTINCT c.id)::text as total_conversations
+         FROM whatsapp_users u
+         JOIN conversations c ON c.user_id = u.id
+         JOIN whatsapp_sessions s ON s.id = c.session_id
+         LEFT JOIN messages m ON m.conversation_id = c.id
+         WHERE s.session_name = $1
+         GROUP BY u.id
+         ORDER BY COUNT(m.id) DESC
+         LIMIT $2`,
+        [sessionName, limit]
+      );
+      return rows.map(r => ({
+        phone_number: r.phone_number,
+        display_name: r.display_name,
+        message_count: parseInt(r.message_count || '0', 10),
+        last_interaction: r.last_interaction,
+        total_conversations: parseInt(r.total_conversations || '0', 10)
+      }));
     } catch (error) {
       console.error('❌ Erro ao buscar usuários mais ativos:', error);
       return null;
@@ -1179,26 +899,9 @@ export class DatabaseService {
    */
   async cleanupOldData(daysOld: number = 30): Promise<void> {
     try {
-      const cutoffDate = new Date(Date.now() - daysOld * 24 * 60 * 60 * 1000).toISOString();
-      
-      // Limpar mensagens antigas
-      await this.supabase
-        .from('messages')
-        .delete()
-        .lt('created_at', cutoffDate);
-
-      // Limpar métricas antigas
-      await this.supabase
-        .from('system_metrics')
-        .delete()
-        .lt('created_at', cutoffDate);
-
-      // Limpar comandos antigos
-      await this.supabase
-        .from('admin_commands')
-        .delete()
-        .lt('created_at', cutoffDate);
-
+      await query(`DELETE FROM messages WHERE created_at < NOW() - INTERVAL '${daysOld} days'`);
+      await query(`DELETE FROM system_metrics WHERE recorded_at < NOW() - INTERVAL '${daysOld} days'`);
+      await query(`DELETE FROM admin_commands WHERE created_at < NOW() - INTERVAL '${daysOld} days'`);
       console.log(`✅ Limpeza de dados antigos concluída (${daysOld} dias)`);
     } catch (error) {
       console.error('❌ Erro na limpeza de dados:', error);
