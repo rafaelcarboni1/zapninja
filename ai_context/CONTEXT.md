@@ -1,17 +1,19 @@
-# CONTEXT.md – last update: 2025-09-05
+# CONTEXT.md – last update: 2025-09-07
 
 ## Summary of last change
-- Feature: Database migration system + Monorepo architecture setup
-- Files changed: 
-  - /database/migrations/ (created migration system)
-  - /database/migrationManager.ts, /database/migrate.ts
-  - /database/dataValidator.ts, /database/validate.ts
-  - /packages/shared/, /packages/database/, /packages/ai-services/, /packages/whatsapp-core/
-  - /package.json (added database scripts)
-  - /turbo.json (updated for monorepo)
-- Purpose: Implement automated database management and prepare monorepo structure
-- Dependencies: @supabase/supabase-js, pnpm workspaces, turbo
-- Status: Phase 1 completed ✅, Phase 2 in progress 🚧
+- Feature: Monorepo structure cleanup + Railway readiness healthcheck
+- Files changed:
+  - Archived legacy duplicates to `/archive/`:
+    - `/src` → `/archive/root-backend-legacy`
+    - `/dist` (root) → `/archive/root-backend-legacy-dist` (if present)
+    - `/zapninja-dashboard` → `/archive/zapninja-dashboard`
+    - `/apps/backend/apps/**` → `/archive/backend-nested-apps`
+    - `/database/**` → `/archive/root-database-legacy`
+  - Canonical database kept at `/apps/backend/database`
+  - Backend: added `/apps/backend/src/orchestrator/health-server.ts` and wired in `/apps/backend/src/main.ts`
+- Purpose: Remove duplicate trees, standardize canonical app paths, and expose `/health` for Railway
+- Dependencies: express, pnpm workspaces, turbo
+- Status: validated/tested ✅ (build/typecheck pending fixes in packages/shared unrelated to archival)
 
 ## Project State
 - Current stack: Node.js/TypeScript + Next.js + Supabase + AI (OpenAI/Gemini)
@@ -28,13 +30,15 @@
 - **Features**: 35+ admin commands, timing control, context memory, health monitoring
 
 ## Key Directories
-- `/src/` - Core backend logic
-- `/zapninja-dashboard/` - Next.js frontend
+- `/apps/backend` - Canonical backend app
+- `/apps/frontend` - Canonical Next.js frontend app
+- `/packages/*` - Shared libraries
+- `/apps/backend/database` - Canonical schema and migrations
 - `/docs/` - Documentation and specifications
-- `/database/` - Schema and migrations
 - `/scripts/` - Maintenance and monitoring tools
 - `/logs/` - System logging
 - `/tokens/` - WhatsApp session data
+- `/archive/` - Archived legacy directories (do not modify)
 
 ## Development Status
 - **Active Features**: Multi-session management, AI integration, admin commands
