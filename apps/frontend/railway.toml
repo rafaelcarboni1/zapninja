@@ -12,3 +12,4 @@ restartPolicyMaxRetries = 3
 [env]
 NODE_ENV = "production"
 PORT = "$PORT"
+NEXT_PUBLIC_HEALTHCHECK_OK = "true"
