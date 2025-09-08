@@ -14,7 +14,8 @@ interface UseRealtimeProps {
 
 export function useRealtime({ table, onInsert, onUpdate, onDelete, enabled = true }: UseRealtimeProps) {
   const [isConnected, setIsConnected] = useState(false)
-  const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null)
+  // Quando Supabase não está configurado, evitamos criar canal
+  const channelRef = useRef<any>(null)
   const reconnectTimeoutRef = useRef<NodeJS.Timeout | undefined>()
 
   const handlePayload = useCallback((payload: RealtimePostgresChangesPayload<Record<string, unknown>>) => {
@@ -34,7 +35,8 @@ export function useRealtime({ table, onInsert, onUpdate, onDelete, enabled = tru
   }, [table, onInsert, onUpdate, onDelete])
 
   const setupChannel = useCallback(() => {
-    if (!enabled || channelRef.current) return
+    // Se supabase não estiver disponível (envs ausentes), não registrar realtime
+    if (!enabled || channelRef.current || !supabase) return
 
     const channelName = `realtime_${table}_${Date.now()}`
     
@@ -84,7 +86,7 @@ export function useRealtime({ table, onInsert, onUpdate, onDelete, enabled = tru
   }, [])
 
   useEffect(() => {
-    if (enabled) {
+    if (enabled && supabase) {
       setupChannel()
     } else {
       cleanup()
