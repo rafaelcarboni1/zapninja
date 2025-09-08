@@ -4,11 +4,11 @@ buildCommand = "pnpm install && pnpm run build"
 
 [deploy]
 startCommand = "pnpm start"
-healthcheckPath = "/"
+healthcheckPath = "/api/health"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
 
 [env]
 NODE_ENV = "production"
-NEXT_PUBLIC_HEALTHCHECK_OK = "true"
+NEXT_PUBLIC_HEALTHCHECK_OK = "false"

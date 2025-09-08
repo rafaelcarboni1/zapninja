@@ -16,10 +16,6 @@ interface DashboardMetrics {
 }
 
 export default function Dashboard() {
-  // Resposta mínima rápida para healthcheck: se variável de contêiner setada, devolve 200 com 'ok'
-  if (process.env.NEXT_PUBLIC_HEALTHCHECK_OK === 'true') {
-    return <div className="p-6 text-sm text-muted-foreground">ok</div>
-  }
   const [metrics, setMetrics] = useState<DashboardMetrics>({
     totalSessions: 0,
     activeSessions: 0,
