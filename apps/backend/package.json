@@ -18,7 +18,8 @@
     "db:rollback": "tsx database/migrate.ts rollback",
     "db:validate": "tsx database/validate.ts validate",
     "db:fix": "tsx database/validate.ts fix",
-    "db:report": "tsx database/validate.ts report"
+    "db:report": "tsx database/validate.ts report",
+    "db:apply": "node -e \"(async()=>{const {readFileSync}=require('fs');const {Client}=require('pg');const sql=readFileSync('apps/backend/database/schema.sql','utf8');const client=new Client({connectionString:process.env.DATABASE_URL,ssl:{rejectUnauthorized:false}});await client.connect();await client.query(sql);await client.end();console.log('Schema aplicado com sucesso');})().catch(e=>{console.error(e);process.exit(1)})\""
   },
   "dependencies": {
     "pg": "^8.12.0",
