@@ -3,3 +3,5 @@ tokens
 .env
 .env.backup
 dist
+.next
+apps/*/.next
