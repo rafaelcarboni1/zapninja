@@ -1,3 +1,36 @@
+# ZAPNINJA – Operações de Banco (Railway Postgres)
+
+## Aplicar o schema no Postgres
+
+Usamos um script dedicado para executar `apps/backend/database/schema.sql` no banco.
+
+Executar localmente (usando a sua DATABASE_PUBLIC_URL):
+
+```
+# 1) Conexão pública (Railway → Postgres → Variables → DATABASE_PUBLIC_URL)
+export DATABASE_URL="postgresql://postgres:******@nozomi.proxy.rlwy.net:22723/railway?sslmode=require"
+
+# 2) Caso encontre erro de certificado self-signed, habilite (somente para a execução):
+export ALLOW_INSECURE_TLS=true
+
+# 3) Rodar o script
+node apps/backend/scripts/apply-schema.js
+```
+
+Via pnpm (atalho):
+
+```
+pnpm --filter @zapninja/backend db:apply
+```
+
+No ambiente Railway (Pre-deploy do backend):
+
+```
+pnpm --filter @zapninja/backend db:apply
+```
+
+O script aceita `DATABASE_URL` ou `DATABASE_PUBLIC_URL` e, se `ALLOW_INSECURE_TLS=true`, desativa a verificação do certificado para permitir conexão com o proxy público da Railway somente durante a aplicação do schema.
+
 # Zap-GPT
 
 Este projeto explora a integração do ChatGPT com o WhatsApp, transformando o chatbot em um assistente virtual capaz de realizar tarefas como falar com amigos, responder a perguntas de clientes, e muito mais, com um toque de humanização nas conversas.
