@@ -4,12 +4,16 @@ import cors from 'cors';
 import { sessionController } from '../dashboard/session-controller';
 import { portManager } from '../dashboard/port-manager';
 import { evolutionClient } from '../services/whatsapp/evolution.client';
+import { databaseService } from '../services/database.service';
+import { SessionManager } from '../services/session.manager';
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+const sessionManager = new SessionManager();
 
 app.get('/health', (_req, res) => {
   res.json({ ok: true, service: 'orchestrator', time: new Date().toISOString() });
@@ -79,6 +83,68 @@ app.get('/evolution/instances/:sessionName/status', async (req, res) => {
     if (!sessionName) return res.status(400).json({ error: 'sessionName is required' });
     const status = await evolutionClient.status(sessionName);
     return res.json({ sessionName, status });
+  } catch (e: any) {
+    return res.status(500).json({ error: e?.message || 'internal_error' });
+  }
+});
+
+app.post('/evolution/webhook', async (req, res) => {
+  try {
+    const token = req.headers['x-evolution-token'] || req.query.token;
+    if (!process.env.EVOLUTION_WEBHOOK_TOKEN) {
+      return res.status(500).json({ error: 'webhook_token_not_configured' });
+    }
+    if (token !== process.env.EVOLUTION_WEBHOOK_TOKEN) {
+      return res.status(401).json({ error: 'unauthorized' });
+    }
+
+    const body = req.body || {};
+    const eventType = body?.event || body?.type || 'message';
+    const sessionName = body?.instance || body?.session || body?.sessionName;
+
+    if (!sessionName) {
+      return res.status(400).json({ error: 'missing_session' });
+    }
+
+    // Mensagem recebida
+    if (eventType === 'message' && body?.data) {
+      const from = (body.data.from || '').replace(/[^0-9]/g, '');
+      const content = body.data?.message?.text || body.data?.body || body.data?.message || '';
+
+      if (from && content) {
+        // Garante usuário e conversa
+        await databaseService.upsertUser({
+          phone_number: from,
+          is_active: true,
+          profile_data: {},
+          preferences: {},
+          name: '',
+          display_name: ''
+        } as any);
+
+        const conversation = await databaseService.getActiveConversation(from, sessionName)
+          || await databaseService.createConversation({
+            session_id: (await databaseService.getSession(sessionName))?.id as string,
+            user_id: (await databaseService.getUserByPhone(from, sessionName))?.id as string,
+            conversation_data: {},
+            context_summary: '',
+            last_interaction: new Date().toISOString()
+          } as any);
+
+        if (conversation?.id) {
+          await databaseService.saveMessage({
+            conversation_id: conversation.id,
+            sender_type: 'user',
+            content,
+            message_type: 'text',
+            metadata: body.data
+          });
+          await databaseService.updateConversationInteraction(conversation.id);
+        }
+      }
+    }
+
+    return res.json({ ok: true });
   } catch (e: any) {
     return res.status(500).json({ error: e?.message || 'internal_error' });
   }

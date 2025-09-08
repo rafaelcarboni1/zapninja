@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+
+const ORCH_URL = process.env.NEXT_PUBLIC_ORCHESTRATOR_URL || process.env.ORCHESTRATOR_URL || ''
 
 export async function POST(request: NextRequest) {
   try {
-    const { sessionName, aiConfig, timingConfig } = await request.json()
+    const { sessionName } = await request.json()
 
     if (!sessionName) {
       return NextResponse.json(
@@ -12,53 +13,23 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Verificar se sessão já existe
-    const { data: existingSession } = await supabase
-      .from('whatsapp_sessions')
-      .select('id')
-      .eq('session_name', sessionName)
-      .single()
-
-    if (existingSession) {
-      return NextResponse.json(
-        { error: 'Uma sessão com este nome já existe' },
-        { status: 409 }
-      )
+    if (!ORCH_URL) {
+      return NextResponse.json({ error: 'Orquestrador não configurado' }, { status: 500 })
     }
 
-    // Criar nova sessão no banco
-    const { data: newSession, error } = await supabase
-      .from('whatsapp_sessions')
-      .insert({
-        session_name: sessionName,
-        is_active: false,
-        ai_config: aiConfig || {
-          model: 'gpt-3.5-turbo',
-          temperature: 0.7,
-        },
-        timing_config: timingConfig || {
-          delayBetweenMessages: 2000,
-          maxMessagesPerHour: 100,
-        },
-        max_messages: 1000,
-        custom_prompt: null
-      })
-      .select()
-      .single()
-
-    if (error) {
-      console.error('Erro ao criar sessão:', error)
-      return NextResponse.json(
-        { error: 'Erro interno do servidor' },
-        { status: 500 }
-      )
-    }
-
-    return NextResponse.json({
-      success: true,
-      session: newSession,
-      message: 'Sessão criada com sucesso'
+    const resp = await fetch(`${ORCH_URL}/evolution/instances`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sessionName })
     })
+
+    if (!resp.ok) {
+      const err = await resp.text()
+      return NextResponse.json({ error: 'Falha ao criar instância', details: err }, { status: 502 })
+    }
+
+    const data = await resp.json()
+    return NextResponse.json({ success: true, session: { session_name: sessionName }, provider: 'evolution', data })
 
   } catch (error) {
     console.error('Erro na API de criação:', error)
