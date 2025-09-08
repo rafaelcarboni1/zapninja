@@ -1,1 +1,20 @@
-{}
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/health/route": "app/api/health/route.js",
+  "/api/sessions/[id]/qr/route": "app/api/sessions/[id]/qr/route.js",
+  "/api/sessions/restart/route": "app/api/sessions/restart/route.js",
+  "/api/sessions/[id]/status/route": "app/api/sessions/[id]/status/route.js",
+  "/api/sessions/create/route": "app/api/sessions/create/route.js",
+  "/api/sessions/start/route": "app/api/sessions/start/route.js",
+  "/api/sessions/stop/route": "app/api/sessions/stop/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/ai-prompts/page": "app/ai-prompts/page.js",
+  "/contacts/page": "app/contacts/page.js",
+  "/conversations/page": "app/conversations/page.js",
+  "/instances/page": "app/instances/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/page": "app/page.js",
+  "/reports/page": "app/reports/page.js",
+  "/settings/page": "app/settings/page.js",
+  "/metrics/page": "app/metrics/page.js"
+}
