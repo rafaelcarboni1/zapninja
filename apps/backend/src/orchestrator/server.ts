@@ -6,6 +6,7 @@ import { portManager } from '../dashboard/port-manager';
 import { evolutionClient } from '../services/whatsapp/evolution.client';
 import { databaseService } from '../services/database.service';
 import { SessionManager } from '../services/session.manager';
+import { env } from '../config/env';
 
 dotenv.config();
 
@@ -58,7 +59,21 @@ app.post('/evolution/instances', async (req, res) => {
   try {
     const { sessionName } = req.body || {};
     if (!sessionName) return res.status(400).json({ error: 'sessionName is required' });
-    // Alguns provedores criam instância on-demand; aqui apenas retornamos ok=true
+    // Persistir sessão quando provider = evolution
+    if (env.whatsappProvider === 'evolution') {
+      const existing = await databaseService.getSessionByName(sessionName);
+      if (!existing) {
+        await databaseService.createSession({
+          session_name: sessionName,
+          is_active: false,
+          ai_config: {},
+          timing_config: {},
+          max_messages: 1000,
+          custom_prompt: null,
+          phone_number: '' as any,
+        } as any);
+      }
+    }
     return res.json({ ok: true, sessionName });
   } catch (e: any) {
     return res.status(500).json({ error: e?.message || 'internal_error' });
@@ -152,8 +167,12 @@ app.post('/evolution/webhook', async (req, res) => {
 
 app.get('/sessions', async (_req, res) => {
   try {
+    if (env.whatsappProvider === 'evolution') {
+      const sessions = await databaseService.getAllSessions();
+      return res.json({ running: sessions.map(s => ({ sessionName: s.session_name })) });
+    }
     const running = sessionController.getRunningProcesses();
-    res.json({ running });
+    return res.json({ running });
   } catch (e: any) {
     res.status(500).json({ error: e?.message || 'internal_error' });
   }
